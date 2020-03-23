@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const LogIn = () => {
+
+    /** Hook: Define State */
+    const 
+        [ logInForm, setLogInForm ] = useState({
+            email: '',
+            password: ''
+        }),
+    /** Destructuring State 'logInForm' */
+        { email, password } = logInForm;
+
+    /** Get form values when they change */
+    const onChangeFormValues = event => {
+        /** Update State 'logInForm' */
+        setLogInForm({
+            ...logInForm,
+            [ event .target .name ]: event .target .value 
+        });
+    }
+
     return(
         <div className="login-form">
             <div className="form-container shadow-dark">
@@ -14,6 +33,8 @@ const LogIn = () => {
                             type="email"
                             name="email"
                             placeholder="Ej: jcarlosj@correo.co"
+                            onChange={ onChangeFormValues }
+                            value={ email }
                         />
                     </div>
                     <div className="form-field">
@@ -23,6 +44,8 @@ const LogIn = () => {
                             type="password"
                             name="password"
                             placeholder="Procura usar una clave segura"
+                            onChange={ onChangeFormValues }
+                            value={ password }
                         />
                     </div>
                     <div className="form-field">
