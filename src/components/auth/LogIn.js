@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const LogIn = () => {
 
@@ -55,6 +56,12 @@ const LogIn = () => {
                         >Iniciar Sesión</button>
                     </div>
                 </form>
+
+                <Link 
+                    to="/sign-in" 
+                    className="link">
+                    Registro
+                </Link>
             </div>
         </div>
     );

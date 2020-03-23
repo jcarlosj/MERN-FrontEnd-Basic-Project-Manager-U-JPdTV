@@ -112,6 +112,12 @@ h1 {
     display: block;
     background-color: transparent;
 }
+/** Links */
+.link {
+    margin-top: 2rem;
+    display: block;
+    opacity: .7;
+}
 
 /** Shadow */
 .shadow-dark {
