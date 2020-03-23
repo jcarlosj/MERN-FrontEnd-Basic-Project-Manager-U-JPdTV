@@ -3,8 +3,28 @@ import { Link } from 'react-router-dom';
 
 const SignIn = () => {
 
+    /** Hook: Define State */
+    const 
+        [ signInForm, setSignInForm ] = useState({
+            userName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        }),
+    /** Destructuring State 'signInForm' */
+        { userName, email, password, confirmPassword } = signInForm;
+
+    /** Get form values when they change */
+    const onChangeFormValues = event => {
+        /** Update State 'logInForm' */
+        setSignInForm({
+            ...signInForm,
+            [ event .target .name ]: event .target .value 
+        });
+    }
+
     return(
-        <div className="login-form">
+        <div className="signin-form">
             <div className="form-container shadow-dark">
                 <h1>Nueva cuenta</h1>
 
@@ -16,6 +36,8 @@ const SignIn = () => {
                             type="text"
                             name="userName"
                             placeholder="Ej: Juan Carlos"
+                            onChange={ onChangeFormValues }
+                            value={ userName }
                         />
                     </div>
                     <div className="form-field">
@@ -25,6 +47,8 @@ const SignIn = () => {
                             type="email"
                             name="email"
                             placeholder="Ej: jcarlosj@correo.co"
+                            onChange={ onChangeFormValues }
+                            value={ email }
                         />
                     </div>
                     <div className="form-field">
@@ -34,6 +58,8 @@ const SignIn = () => {
                             type="password"
                             name="password"
                             placeholder="Procura usar una clave segura"
+                            onChange={ onChangeFormValues }
+                            value={ password }
                         />
                     </div>
                     <div className="form-field">
@@ -43,6 +69,8 @@ const SignIn = () => {
                             type="password"
                             name="confirmPassword"
                             placeholder="Repite la contraseña del campo anterior"
+                            onChange={ onChangeFormValues }
+                            value={ confirmPassword }
                         />
                     </div>
                     <div className="form-field">
@@ -56,7 +84,7 @@ const SignIn = () => {
                 <Link 
                     to="/" 
                     className="link">
-                    Login
+                    Iniciar sesión
                 </Link>
             </div>
         </div>
