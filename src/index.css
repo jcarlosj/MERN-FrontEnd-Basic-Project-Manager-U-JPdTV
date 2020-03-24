@@ -36,6 +36,45 @@ h1 span {
 h1 {
   font-size: 3rem;
 }
+h2 {
+    font-size: 2.4rem;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: var(--gris2);
+}
+
+/** SideBar */
+aside  {
+    padding: 3rem;
+}
+.projects-container {
+    margin-top: 10rem;
+}
+.tasks-container {
+  padding: 4rem;
+}
+
+@media ( min-width: 768px ) {
+    .app-container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    aside {
+        background-color: var( --blanco );
+        flex: 0 0 300px;
+    }
+
+    main {
+        flex: 1;
+    }
+}
 
 /** Form */
 .login-form,
@@ -47,6 +86,26 @@ h1 {
     align-items: center;
     justify-content: center;
 }
+
+.new-project-form {
+    margin-top: 6rem;
+}
+.new-project-form .input-text {
+    border-bottom: 1px solid var( --gris2 );
+    border-radius: 0;
+    background-color: var( --gris1 );
+}
+.new-project-form .input-text::placeholder{
+    color: var( --gris2 );
+}
+
+.input-text {
+    padding: 1rem;
+    border: none;
+    border-radius: .5rem;
+    flex: 1;
+    width: 100%;
+  }
 
 .form-container {
     padding: 5rem 3rem;
