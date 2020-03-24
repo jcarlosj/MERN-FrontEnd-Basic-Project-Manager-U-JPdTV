@@ -1,6 +1,24 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const NewProject = () => {
+
+    /** Hook: Define State */
+    const 
+        [ projectForm, setProjectForm ] = useState({
+            nameProject: ''
+        }),
+    /** Destructuring State 'projectForm' */
+        { nameProject } = projectForm;
+
+    /** Get form values when they change */
+    const onChangeFormValues = event => {
+        /** Update State 'projectForm' */
+        setProjectForm({
+            ...projectForm,
+            [ event .target .name ]: event .target .value 
+        });
+    }
+
     return(
         <Fragment>
             <button
@@ -16,6 +34,8 @@ const NewProject = () => {
                     className="input-text"
                     placeholder="Nombre Proyecto"
                     name="nameProject"
+                    onChange={ onChangeFormValues }
+                    value={ nameProject }
                 />
                 <button
                     type="button"
