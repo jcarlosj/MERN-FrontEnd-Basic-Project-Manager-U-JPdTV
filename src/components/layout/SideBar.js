@@ -2,6 +2,7 @@ import React from 'react';
 
 /** Components */
 import NewProject from '../projects/NewProject';
+import ProjectList from '../projects/ProjectList';
 
 const SideBar = () => {
     return (
@@ -11,6 +12,7 @@ const SideBar = () => {
 
             <div className="projects-container">
                 <h2>Proyectos</h2>
+                <ProjectList />
             </div>
         </aside>
     );
