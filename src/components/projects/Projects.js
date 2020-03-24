@@ -2,6 +2,7 @@ import React from 'react';
 
 /** Components */
 import SideBar from '../layout/SideBar';
+import Header from '../layout/Header';
  
 const Projects = () => {
     return(
@@ -9,6 +10,7 @@ const Projects = () => {
             <SideBar />
             
             <main>
+                <Header />
                 <div className="tasks-container">
 
                 </div>
