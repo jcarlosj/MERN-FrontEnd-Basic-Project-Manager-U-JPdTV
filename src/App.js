@@ -6,15 +6,20 @@ import LogIn from './components/auth/LogIn';
 import SignIn from './components/auth/SignIn';
 import Projects from './components/projects/Projects';
 
+/** Contexts */
+import ProjectState from './hooks/projects/project-state';
+
 function App() {
   return (
-    <Router>
-        <Switch>
-            <Route exact path="/" component={ LogIn } />
-            <Route exact path="/sign-in" component={ SignIn } />
-            <Route exact path="/projects" component={ Projects } />
-        </Switch>
-    </Router>
+    <ProjectState>
+        <Router>
+            <Switch>
+                <Route exact path="/" component={ LogIn } />
+                <Route exact path="/sign-in" component={ SignIn } />
+                <Route exact path="/projects" component={ Projects } />
+            </Switch>
+        </Router>
+    </ProjectState>
   );
 }
 
