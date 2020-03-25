@@ -4,6 +4,7 @@ import React from 'react';
 import SideBar from '../layout/SideBar';
 import Header from '../layout/Header';
 import NewAndEditTask from '../tasks/NewAndEditTask';
+import TaskList from '../tasks/TaskList';
  
 const Projects = () => {
     return(
@@ -13,8 +14,9 @@ const Projects = () => {
             <main>
                 <Header />
                 <NewAndEditTask />
+                
                 <div className="tasks-container">
-
+                    <TaskList />
                 </div>
             </main>
             
