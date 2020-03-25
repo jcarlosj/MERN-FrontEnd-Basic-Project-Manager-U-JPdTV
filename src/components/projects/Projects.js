@@ -3,6 +3,7 @@ import React from 'react';
 /** Components */
 import SideBar from '../layout/SideBar';
 import Header from '../layout/Header';
+import NewAndEditTask from '../tasks/NewAndEditTask';
  
 const Projects = () => {
     return(
@@ -11,6 +12,7 @@ const Projects = () => {
             
             <main>
                 <Header />
+                <NewAndEditTask />
                 <div className="tasks-container">
 
                 </div>

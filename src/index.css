@@ -138,6 +138,15 @@ aside  {
     border-radius: 1rem;
 }
 
+.new-and-edit-task-container {
+    background-color: var( --gris3 );
+    padding: 4rem;
+}
+.new-and-edit-task-container form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .form-field {
     display: flex;
     margin-bottom: 2rem;
@@ -180,7 +189,12 @@ aside  {
     background: var( --gris3 );
 }
 .btn-secondary {
+    background-color: var( --gris2 );
+    color: var( --blanco );
+}
+.btn-secondary:hover {
     background-color: var( --gris1 );
+    color: var( --gris2 );
 }
 .btn-block {
     display: block;
