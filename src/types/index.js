@@ -1,1 +1,2 @@
 export const PROJECT_FORM = 'PROJECT_FORM';
+export const GET_API_PROJECTS = 'GET_API_PROJECTS';

@@ -1,4 +1,4 @@
-import { PROJECT_FORM } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+import { PROJECT_FORM, GET_API_PROJECTS } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Define las acciones o eventos del Componente 
  *      - state: Estado del Componente antes de algún cambio.
@@ -12,7 +12,12 @@ const ProjectReducer = ( state, action ) => {
         case PROJECT_FORM:  
             return {
                 ...state,
-                toShow: true
+                toShow: true                // Asigna valores a la propiedad 'toShow' del State del Context
+            }
+        case GET_API_PROJECTS: 
+            return {
+                ...state,
+                projects: action .payload   // Asigna valores a la propiedad 'projects' del State del Context
             }
         default:            // Acción por defecto
             return state;

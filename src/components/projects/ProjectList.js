@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 /** Components */
 import Project from './Project';
@@ -11,7 +11,15 @@ const ProjectList = () => {
     /** Get State Project Context */
     const 
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
-        { projects } = projectContext;                   // Destructuring Context Provider
+        { projects, getApiProjects } = projectContext;           // Destructuring Context Provider
+
+    /** Hook: Tracking State 
+     * Get projects when the component load
+    */
+    useEffect( () => {
+        console .log( 'Component ProjectList has loaded!' );
+        getApiProjects();
+    }, [] );
 
     /** Validate if data exists */
     if( projects .length === 0 ) return null;
