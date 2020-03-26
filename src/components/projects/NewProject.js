@@ -5,7 +5,7 @@ import ProjectContext from '../../context/projects/project-context';
 
 const NewProject = () => {
 
-    /** Get State Project Form */
+    /** Get State Project Context */
     const 
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
         { toShow, showForm } = projectContext;                   // Destructuring Context Provider

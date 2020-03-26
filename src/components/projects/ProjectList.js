@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 /** Components */
 import Project from './Project';
 
+/** Context */
+import ProjectContext from '../../context/projects/project-context';
+
 const ProjectList = () => {
 
-    // TO DO: Change static data for dynamic data
-    const projects = [
-        { id: 1, name: 'Virtual Shopping' },
-        { id: 2, name: 'Learning Python & Django' },
-        { id: 3, name: 'Personal Web Page' }
-    ];
+    /** Get State Project Context */
+    const 
+        projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
+        { projects } = projectContext;                   // Destructuring Context Provider
+
+    /** Validate if data exists */
+    if( projects .length === 0 ) return null;
 
     return(
         <ul className="project-list">

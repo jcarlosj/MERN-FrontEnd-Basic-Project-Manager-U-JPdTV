@@ -6,7 +6,13 @@ import { PROJECT_FORM } from '../../types';     // No pongo nombre del archivo p
 const ProjectState = props => {
     /** Estado inicial de datos  que fluirá por los Componentes */
     const initialState = {
-        toShow: false
+        toShow: false,
+        projects: [
+            { id: 1, name: 'Virtual Shopping' },
+            { id: 2, name: 'Learning Python & Django' },
+            { id: 3, name: 'Personal Web Page' },
+            { id: 4, name: 'Prototype business idea' }
+        ]
     }
 
     /** Dispatch: Envia acciones a ejecutar */
@@ -30,7 +36,8 @@ const ProjectState = props => {
          *      - value: Objeto con Valores o Funciones que estarán disponibles globalmente */
         <ProjectContext .Provider       
             value={{ 
-                toShow: state .toShow,  // Valor del State
+                toShow: state .toShow,      // Valor del State
+                projects: state .projects,  // Valor del State
                 showForm                // Funcionalidad
             }}
         >
