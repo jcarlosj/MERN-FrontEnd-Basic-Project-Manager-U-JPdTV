@@ -11,7 +11,7 @@ import ProjectState from './context/projects/project-state';
 
 function App() {
   return (
-    <ProjectState>
+    <ProjectState>  { /** Componente hace disponible el State (Datos) a los componentes hijos */ }
         <Router>
             <Switch>
                 <Route exact path="/" component={ LogIn } />

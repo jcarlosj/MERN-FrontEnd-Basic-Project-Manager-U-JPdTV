@@ -7,7 +7,7 @@ const NewProject = () => {
 
     /** Get State Project Form */
     const 
-        projectContext = useContext( ProjectContext ),
+        projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
         { toShow, showForm } = projectContext;                   // Destructuring Context Provider
 
     /** Hook: Define State */
@@ -32,7 +32,7 @@ const NewProject = () => {
             <button
                 type="button"
                 className="btn btn-primary btn-block"
-                onClick={ () => showForm() }
+                onClick={ () => showForm() }    /** Ejecuta funcion del State del Contexto */
             >Nuevo proyecto</button>
 
             { toShow
