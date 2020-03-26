@@ -7,7 +7,7 @@ import SignIn from './components/auth/SignIn';
 import Projects from './components/projects/Projects';
 
 /** Contexts */
-import ProjectState from './hooks/projects/project-state';
+import ProjectState from './context/projects/project-state';
 
 function App() {
   return (
