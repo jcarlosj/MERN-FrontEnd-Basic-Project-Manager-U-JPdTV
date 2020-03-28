@@ -8,22 +8,35 @@ const NewProject = () => {
     /** Get State Project Context */
     const 
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
-        { toShow, showForm } = projectContext;                   // Destructuring Context Provider
+        { toShow, showForm, addApiProject } = projectContext;                   // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
-        [ dataForm, setDataForm ] = useState({
-            nameProject: ''
+        [ projectForm, setProjectForm ] = useState({
+            name: ''
         }),
-    /** Destructuring State 'dataForm' */
-        { nameProject } = dataForm;
+    /** Destructuring State 'projectForm' */
+        { name } = projectForm;
 
     /** Get form values when they change */
     const onChangeFormValues = event => {
-        /** Update State 'dataForm' */
-        setDataForm({
-            ...dataForm,
+        /** Update State 'projectForm' */
+        setProjectForm({
+            ...projectForm,
             [ event .target .name ]: event .target .value 
+        });
+    }
+
+    /** Submit form data */
+    const onSubmitFormValues = event => {
+        event .preventDefault();
+
+        /** Validate form values */
+        if( name === '' ) return;
+
+        addApiProject( projectForm );    // Add values to state
+        setProjectForm({
+            name: ''                     // Update State 'ProjectForm' & Reset form 
         });
     }
 
@@ -38,17 +51,18 @@ const NewProject = () => {
             { toShow
                 ?   <form 
                         className="new-project-form"
+                        onSubmit={ onSubmitFormValues }
                     >
                         <input 
                             type="text"
                             className="input-text"
                             placeholder="Nombre Proyecto"
-                            name="nameProject"
+                            name="name"
                             onChange={ onChangeFormValues }
-                            value={ nameProject }
+                            value={ name }
                         />
                         <button
-                            type="button"
+                            type="submit"
                             className="btn btn-primary btn-block"
                         >Agregar</button>
 
