@@ -1,9 +1,24 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 
 /** Components */
 import Task from './Task';
 
+/** Contexts */
+import ProjectContext from '../../context/projects/project-context';
+
+/** Component */
 const TaskList = () => {
+
+    /** Get State Project Context */
+    const 
+        projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
+        { project } = projectContext;                            // Destructuring Context Provider
+
+
+    /** Validates if there is no selected project */
+    if( ! project ) return <h2>Selecciona un proyecto</h2>;
+    
+    const [ actualProject ] = project;                            // Array Destructuring
 
     // TO DO: Change static data for dynamic data
     const tasks = [
@@ -15,7 +30,7 @@ const TaskList = () => {
 
     return(
         <Fragment>
-            <h2>Proyecto <span>Virtual Shopping</span></h2>
+            <h2>Proyecto <span>{ actualProject .name }</span></h2>
             <ul className="task-list">
                 { tasks .length === 0 
                     ?   <li className="task">No hay tareas</li>
