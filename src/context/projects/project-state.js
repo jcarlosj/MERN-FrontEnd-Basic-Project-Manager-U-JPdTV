@@ -6,7 +6,8 @@ import {
     PROJECT_FORM, 
     GET_PROJECTS, 
     ADD_PROJECT,
-    ERROR_NEW_PROJECT_FORM
+    ERROR_NEW_PROJECT_FORM,
+    GET_SELECTED_PROJECT
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Dependencies */
@@ -26,6 +27,7 @@ const ProjectState = props => {
     /** Estado inicial de datos  que fluirá por los Componentes */
     const initialState = {
         toShow: false,
+        project: null,
         projects: [],
         error: false
     }
@@ -64,6 +66,14 @@ const ProjectState = props => {
         });
     }
 
+    /** Get selected project */
+    const getSelectedProject = projectId => {
+        dispatch({
+            type: GET_SELECTED_PROJECT,
+            payload: projectId
+        });
+    }
+
     /** Show error new project form */
     const showErrorNewProjectForm = () => {
         dispatch({
@@ -80,10 +90,12 @@ const ProjectState = props => {
                 toShow: state .toShow,      // Valor del State
                 projects: state .projects,  // Valor del State
                 error: state .error,        // Valor del State
+                project: state .project,    // Valor del State
                 showForm,                   // Funcionalidad
                 getApiProjects,             // Funcionalidad
                 addApiProject,              // Funcionalidad
-                showErrorNewProjectForm     // Funcionalidad
+                showErrorNewProjectForm,    // Funcionalidad
+                getSelectedProject          // Funcionalidad
             }}
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}
