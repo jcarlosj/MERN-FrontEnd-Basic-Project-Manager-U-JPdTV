@@ -2,7 +2,12 @@ import React, { useReducer } from 'react';
 /** ProjectProvider */
 import ProjectContext from './project-context';
 import ProjectReducer from './project-reducer';
-import { PROJECT_FORM, GET_PROJECTS, ADD_PROJECT } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+import { 
+    PROJECT_FORM, 
+    GET_PROJECTS, 
+    ADD_PROJECT,
+    ERROR_NEW_PROJECT_FORM
+} from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Dependencies */
 import { v4 as uuidv4 } from 'uuid';
@@ -21,7 +26,8 @@ const ProjectState = props => {
     /** Estado inicial de datos  que fluirá por los Componentes */
     const initialState = {
         toShow: false,
-        projects: []
+        projects: [],
+        error: false
     }
 
     /** Dispatch: Envia acciones a ejecutar */
@@ -57,6 +63,13 @@ const ProjectState = props => {
             payload: project
         });
     }
+
+    /** Show error new project form */
+    const showErrorNewProjectForm = () => {
+        dispatch({
+            type: ERROR_NEW_PROJECT_FORM
+        });
+    }
  
     return(
         /** ProjectContext .Provider:
@@ -66,9 +79,11 @@ const ProjectState = props => {
             value={{ 
                 toShow: state .toShow,      // Valor del State
                 projects: state .projects,  // Valor del State
+                error: state .error,        // Valor del State
                 showForm,                   // Funcionalidad
                 getApiProjects,             // Funcionalidad
-                addApiProject               // Funcionalidad
+                addApiProject,              // Funcionalidad
+                showErrorNewProjectForm     // Funcionalidad
             }}
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}

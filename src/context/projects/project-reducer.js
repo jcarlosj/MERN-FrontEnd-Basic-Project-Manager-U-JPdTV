@@ -1,4 +1,9 @@
-import { PROJECT_FORM, GET_PROJECTS, ADD_PROJECT } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+import { 
+    PROJECT_FORM, 
+    GET_PROJECTS, 
+    ADD_PROJECT,
+    ERROR_NEW_PROJECT_FORM 
+} from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Define las acciones o eventos del Componente 
  *      - state: Estado del Componente antes de algún cambio.
@@ -29,7 +34,14 @@ const ProjectReducer = ( state, action ) => {
                     ...state .projects,     // Lo que tenemos
                     action .payload         // Lo que agregamos
                 ],
-                toShow: false               // Close new project form
+                toShow: false,              // Close new project form
+                error: false                // Hide error message
+            }
+        case ERROR_NEW_PROJECT_FORM: 
+            // Asigna valores a la propiedad 'error' del State del Context
+            return {
+                ...state,
+                error: true                 // Show error message
             }
         default:            // Acción por defecto
             return state;

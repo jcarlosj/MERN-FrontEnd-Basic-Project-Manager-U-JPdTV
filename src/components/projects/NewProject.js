@@ -8,7 +8,7 @@ const NewProject = () => {
     /** Get State Project Context */
     const 
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
-        { toShow, showForm, addApiProject } = projectContext;                   // Destructuring Context Provider
+        { toShow, showForm, error, addApiProject, showErrorNewProjectForm } = projectContext;                   // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -32,7 +32,10 @@ const NewProject = () => {
         event .preventDefault();
 
         /** Validate form values */
-        if( name === '' ) return;
+        if( name === '' ) {
+            showErrorNewProjectForm();  // Show Error
+            return;
+        }
 
         addApiProject( projectForm );    // Add values to state
         setProjectForm({
@@ -67,6 +70,10 @@ const NewProject = () => {
                         >Agregar</button>
 
                     </form>
+                :   null
+            }
+            { error 
+                ?   <p className="message error">Nombre del proyecto es obligatorio</p>
                 :   null
             }
         </Fragment>
