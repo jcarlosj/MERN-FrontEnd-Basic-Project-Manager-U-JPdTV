@@ -21,12 +21,7 @@ const TaskList = () => {
     const [ actualProject ] = project;                            // Array Destructuring
 
     // TO DO: Change static data for dynamic data
-    const tasks = [
-        { id: 1, name: 'Choose platform', state: false },
-        { id: 2, name: 'Buy Hosting and Domain', state: true },
-        { id: 3, name: 'Add Products', state: false },
-        { id: 4, name: 'Choose payment methods', state: false }
-    ];
+    const tasks = [];
 
     /** Delete a proyect */
     const deleteAProject = () => {
@@ -38,7 +33,7 @@ const TaskList = () => {
             <h2>Proyecto <span>{ actualProject .name }</span></h2>
             <ul className="task-list">
                 { tasks .length === 0 
-                    ?   <li className="task">No hay tareas</li>
+                    ?   <li className="task"><p>No hay tareas</p></li>
                     :   tasks .map( task => (
                             <Task
                                 key={ task .id }
