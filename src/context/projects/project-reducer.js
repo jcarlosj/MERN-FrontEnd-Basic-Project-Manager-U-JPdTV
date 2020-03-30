@@ -3,7 +3,8 @@ import {
     GET_PROJECTS, 
     ADD_PROJECT,
     ERROR_NEW_PROJECT_FORM,
-    GET_SELECTED_PROJECT 
+    GET_SELECTED_PROJECT,
+    DELETE_PROJECT 
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Define las acciones o eventos del Componente 
@@ -47,6 +48,16 @@ const ProjectReducer = ( state, action ) => {
                 ],
                 toShow: false,              // Close new project form
                 error: false                // Hide error message
+            }
+        case DELETE_PROJECT:
+            return {
+                ...state,
+                projects: state .projects .filter( project => {      // Itera todos los proyectos para filtrar el seleccionado y ... 
+                    if( project .id !== action .payload ) {
+                        return project;                              // ... Asigna los projectos a la propiedad 'project' del State del Context, excepto el seleccionado
+                    } 
+                }),
+                project: null                                        // Reset selected project to null
             }
         case ERROR_NEW_PROJECT_FORM: 
             // Asigna valores a la propiedad 'error' del State del Context

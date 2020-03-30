@@ -7,7 +7,8 @@ import {
     GET_PROJECTS, 
     ADD_PROJECT,
     ERROR_NEW_PROJECT_FORM,
-    GET_SELECTED_PROJECT
+    GET_SELECTED_PROJECT,
+    DELETE_PROJECT
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Dependencies */
@@ -74,6 +75,14 @@ const ProjectState = props => {
         });
     }
 
+    /** Delete a Project */
+    const deleteProject = projectId => {
+        dispatch({
+            type: DELETE_PROJECT,
+            payload: projectId
+        });
+    }
+
     /** Show error new project form */
     const showErrorNewProjectForm = () => {
         dispatch({
@@ -95,7 +104,8 @@ const ProjectState = props => {
                 getApiProjects,             // Funcionalidad
                 addApiProject,              // Funcionalidad
                 showErrorNewProjectForm,    // Funcionalidad
-                getSelectedProject          // Funcionalidad
+                getSelectedProject,         // Funcionalidad
+                deleteProject               // Funcionalidad
             }}
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}

@@ -22,7 +22,7 @@ const ProjectList = () => {
     }, [] );
 
     /** Validate if data exists */
-    if( projects .length === 0 ) return null;
+    if( projects .length === 0 ) return <p>No hay proyectos, comienza ahora creando uno.</p>;
 
     return(
         <ul className="project-list">

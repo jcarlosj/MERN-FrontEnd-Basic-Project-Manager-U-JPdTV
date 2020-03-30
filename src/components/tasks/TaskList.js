@@ -12,7 +12,7 @@ const TaskList = () => {
     /** Get State Project Context */
     const 
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
-        { project } = projectContext;                            // Destructuring Context Provider
+        { project, deleteProject } = projectContext;                            // Destructuring Context Provider
 
 
     /** Validates if there is no selected project */
@@ -27,6 +27,11 @@ const TaskList = () => {
         { id: 3, name: 'Add Products', state: false },
         { id: 4, name: 'Choose payment methods', state: false }
     ];
+
+    /** Delete a proyect */
+    const deleteAProject = () => {
+        deleteProject( actualProject .id );
+    }
 
     return(
         <Fragment>
@@ -46,6 +51,7 @@ const TaskList = () => {
                 <button
                     type="button"
                     className="btn btn-secondary"
+                    onClick={ deleteAProject }
                 >Eliminar Proyecto &times;</button> 
             </div>
         </Fragment>
