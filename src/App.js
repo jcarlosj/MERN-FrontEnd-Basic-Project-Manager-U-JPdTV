@@ -8,10 +8,12 @@ import Projects from './components/projects/Projects';
 
 /** Contexts */
 import ProjectState from './context/projects/project-state';
+import TaskState from './context/tasks/task-state';
 
 function App() {
   return (
     <ProjectState>  { /** Componente hace disponible el State (Datos) a los componentes hijos */ }
+      <TaskState>   { /** Componente hace disponible el State (Datos) a los componentes hijos */ }
         <Router>
             <Switch>
                 <Route exact path="/" component={ LogIn } />
@@ -19,6 +21,7 @@ function App() {
                 <Route exact path="/projects" component={ Projects } />
             </Switch>
         </Router>
+      </TaskState>
     </ProjectState>
   );
 }
