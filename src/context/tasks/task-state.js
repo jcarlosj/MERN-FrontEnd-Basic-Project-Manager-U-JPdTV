@@ -4,6 +4,11 @@ import React, { useReducer } from 'react';
 import TaskContext from './task-context';
 import TaskReducer from './task-reducer';
 
+/** TYPES */
+import { 
+    GET_PROJECT_TASKS
+} from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+
 /** Context Status */
 const TaskState = props => {
 
@@ -24,7 +29,8 @@ const TaskState = props => {
 
     /** Estado inicial de datos  que fluirá por los Componentes */
     const initialState = {
-        tasks
+        tasks,
+        projectTasks: []
     }
 
     /** Dispatch: Envia acciones a ejecutar */
@@ -34,13 +40,23 @@ const TaskState = props => {
         initialState        // Inicial State: Estado inicial del Componente
     );  
 
+    /** Get tasks by project */
+    const getTasksByProject = projectId => {
+        dispatch({
+            type: GET_PROJECT_TASKS,
+            payload: projectId
+        });
+    }
+
     return(
         /** TaskContext .Provider:
          *  Provee de datos al Contexto pasando un objeto.
          *      - value: Objeto con Valores o Funciones que estarán disponibles globalmente */
         <TaskContext .Provider       
             value={{
-                tasks: state .tasks
+                tasks: state .tasks,     // Valor del State
+                projectTasks: state .projectTasks,   // Valor del State
+                getTasksByProject        // Funcionalidad
             }} 
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}
