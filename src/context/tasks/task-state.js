@@ -8,7 +8,8 @@ import TaskReducer from './task-reducer';
 import { 
     GET_PROJECT_TASKS,
     ERROR_NEW_AND_EDIT_TASK_FORM,
-    ADD_TASK
+    ADD_TASK,
+    DELETE_TASK
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Context Status */
@@ -60,6 +61,13 @@ const TaskState = props => {
         });
     }
 
+    const deleteTaskByProject = taskId => {
+        dispatch({
+            type: DELETE_TASK,
+            payload: taskId
+        });
+    }
+
     /** Show error new and edit task form */
     const showErrorNewAndEditTaskForm = () => {
         dispatch({
@@ -78,7 +86,8 @@ const TaskState = props => {
                 error: state .error,                 // Valor del State
                 getTasksByProject,                   // Funcionalidad
                 showErrorNewAndEditTaskForm,         // Funcionalidad
-                addTaskByProject                     // Funcionalidad
+                addTaskByProject,                    // Funcionalidad
+                deleteTaskByProject                  // Funcionalidad
             }} 
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}

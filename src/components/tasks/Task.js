@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+/** Contexts */
+import ProjectContext from '../../context/projects/project-context';
+import TaskContext from '../../context/tasks/task-context';
 
 const Task = ({ data }) => {
+
+    /** Get State Project Context */
+    const 
+        projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State de ProjectContext
+        { project } = projectContext,                            // Destructuring Context Provider
+        taskContext = useContext( TaskContext ),                 // Hace accesible los datos del State de TaskContext
+        { deleteTaskByProject, getTasksByProject } = taskContext;    // Destructuring Context Provider
+
+
+    /** Destructuring Array */
+    const [ actualProject ] = project;
+
+    /** Delete Task */
+    const deleteTask = taskId => {
+        deleteTaskByProject( taskId );              // Delete Task by ID
+        getTasksByProject( actualProject .id );     // Get tasks by project & Update task list in the frontend
+    }
+
     return(
         <li className="task shadow">
             <p>{ data .name }</p>
@@ -24,6 +46,7 @@ const Task = ({ data }) => {
                 <button
                     type="button"
                     className="btn btn-secondary"
+                    onClick={ () => deleteTask( data .id ) }
                 >Eliminar</button> 
             </div>
         </li>

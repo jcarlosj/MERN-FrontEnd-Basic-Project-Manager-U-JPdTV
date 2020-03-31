@@ -45,13 +45,11 @@ const NewAndEditTask = () => {
             showErrorNewAndEditTaskForm();  // Show Error
             return;
         }
-        console .log( 'Task name', name );
 
-        taskForm .id = 0;                           // Assing ID task
+        // TO DO: Fix task ID assignments
         taskForm .projectId = actualProject .id;    // Assign the current project ID to the task
         taskForm .state = false;                    // Assign initial status of the task
         addTaskByProject( taskForm );               // Add values to state
-
         getTasksByProject( actualProject .id );     // Get tasks by project & Update task list in the frontend
 
         /** Reset form */

@@ -1,7 +1,8 @@
 import { 
     GET_PROJECT_TASKS,
     ERROR_NEW_AND_EDIT_TASK_FORM,
-    ADD_TASK
+    ADD_TASK,
+    DELETE_TASK
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Define las acciones o eventos del Componente 
@@ -36,6 +37,13 @@ const TaskReducer = ( state, action ) => {
                     action .payload
                 ],
                 error: false                 // Hide error message
+            }
+        case DELETE_TASK:
+            return {
+                ...state,
+                tasks: state .tasks .filter( task => {
+                    return task .id !== action .payload;
+                })
             }
         default:            // Acción por defecto
             return state;
