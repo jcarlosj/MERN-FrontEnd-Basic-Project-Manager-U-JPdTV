@@ -6,7 +6,8 @@ import TaskReducer from './task-reducer';
 
 /** TYPES */
 import { 
-    GET_PROJECT_TASKS
+    GET_PROJECT_TASKS,
+    ERROR_NEW_AND_EDIT_TASK_FORM
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Context Status */
@@ -30,7 +31,8 @@ const TaskState = props => {
     /** Estado inicial de datos  que fluirá por los Componentes */
     const initialState = {
         tasks,
-        projectTasks: []
+        projectTasks: [],
+        error: false
     }
 
     /** Dispatch: Envia acciones a ejecutar */
@@ -48,15 +50,24 @@ const TaskState = props => {
         });
     }
 
+    /** Show error new and edit task form */
+    const showErrorNewAndEditTaskForm = () => {
+        dispatch({
+            type: ERROR_NEW_AND_EDIT_TASK_FORM
+        });
+    }
+
     return(
         /** TaskContext .Provider:
          *  Provee de datos al Contexto pasando un objeto.
          *      - value: Objeto con Valores o Funciones que estarán disponibles globalmente */
         <TaskContext .Provider       
             value={{
-                tasks: state .tasks,     // Valor del State
+                tasks: state .tasks,                 // Valor del State
                 projectTasks: state .projectTasks,   // Valor del State
-                getTasksByProject        // Funcionalidad
+                error: state .error,                 // Valor del State
+                getTasksByProject,                   // Funcionalidad
+                showErrorNewAndEditTaskForm          // Funcionalidad
             }} 
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}

@@ -1,5 +1,6 @@
 import { 
-    GET_PROJECT_TASKS
+    GET_PROJECT_TASKS,
+    ERROR_NEW_AND_EDIT_TASK_FORM
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Define las acciones o eventos del Componente 
@@ -10,7 +11,7 @@ import {
 */
 const TaskReducer = ( state, action ) => {   
     switch( action .type ) {
-        // Acciónes a ejecutar
+        // Acciones a ejecutar
         case GET_PROJECT_TASKS:
             return {
                 ...state,
@@ -19,6 +20,12 @@ const TaskReducer = ( state, action ) => {
                         return task;
                     }
                 })
+            }
+        case ERROR_NEW_AND_EDIT_TASK_FORM: 
+            // Asigna valores a la propiedad 'error' del State del Context
+            return {
+                ...state,
+                error: true                 // Show error message
             }
         default:            // Acción por defecto
             return state;

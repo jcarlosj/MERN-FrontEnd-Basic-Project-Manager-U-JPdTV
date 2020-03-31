@@ -2,14 +2,17 @@ import React, { useContext, useState } from 'react';
 
 /** Contexts */
 import ProjectContext from '../../context/projects/project-context';
+import TaskContext from '../../context/tasks/task-context';
 
 /** Component */
 const NewAndEditTask = () => {
 
     /** Get State Project Context */
     const 
-        projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
-        { project } = projectContext;                            // Destructuring Context Provider
+        projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State de ProjectContext
+        { project } = projectContext,                            // Destructuring Context Provider
+        taskContext = useContext( TaskContext ),                 // Hace accesible los datos del State de TaskContext
+        { error, showErrorNewAndEditTaskForm } = taskContext;    // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -33,10 +36,27 @@ const NewAndEditTask = () => {
         });
     }
 
+    /** Submit form data */
+    const onSubmitFormValues = event => {
+        event .preventDefault();
+
+        /** Validate form values */
+        if( name .trim() === '' ) {
+            showErrorNewAndEditTaskForm();  // Show Error
+            return;
+        }
+        console .log( 'Task name', name );
+
+        /** TO DO: Add values to state */
+        /** TO DO: Update State '' & Reset form  */
+        
+    }
+
     return(
         <div className="new-and-edit-task-container">
             <form 
                 className="new-and-edit-task-form"
+                onSubmit={ onSubmitFormValues }
             >
                 <input 
                     type="text"
@@ -48,10 +68,14 @@ const NewAndEditTask = () => {
                 />
 
                 <button
-                    type="button"
+                    type="submit"
                     className="btn btn-secondary btn-block"
                 >Agregar</button>
             </form>
+            { error 
+                ?   <p className="message error">Nombre para la tarea es obligatorio</p>
+                :   null
+            }
         </div>
     );
 }
