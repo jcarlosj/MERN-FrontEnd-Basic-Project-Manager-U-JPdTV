@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 /** Contexts */
 import ProjectContext from '../../context/projects/project-context';
@@ -11,11 +11,27 @@ const NewAndEditTask = () => {
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
         { project } = projectContext;                            // Destructuring Context Provider
 
+    /** Hook: Define State */
+    const 
+        [ taskForm, setTaskForm ] = useState({
+            name: ''
+        }),
+    /** Destructuring State 'taskForm' */
+        { name } = taskForm;
 
     /** Validates if there is no selected project */
     if( ! project ) return null;
     
     const [ actualProject ] = project;                            // Array Destructuring
+
+    /** Get form values when they change */
+    const handleChangeFormValues = event => {
+        /** Update State 'taskForm' */
+        setTaskForm({
+            ...taskForm,
+            [ event .target .name ]: event .target .value 
+        });
+    }
 
     return(
         <div className="new-and-edit-task-container">
@@ -26,7 +42,9 @@ const NewAndEditTask = () => {
                     type="text"
                     className="input-text"
                     placeholder="Nombre Tarea"
-                    name="nameTask"
+                    name="name"
+                    onChange={ handleChangeFormValues }
+                    value={ name }
                 />
 
                 <button
