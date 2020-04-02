@@ -289,3 +289,23 @@ aside  {
     -moz-box-shadow: 0px 6px 11px -8px rgba(0,0,0,0.9);
     box-shadow: 0px 6px 11px -8px rgba(0,0,0,0.9);
 }
+
+/** Animations */
+.task-enter,
+.project-enter {
+  opacity: 0;
+}
+.task-enter-active,
+.project-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.task-exit,
+.project-exit {
+  opacity: 1;
+}
+.task-exit-active,
+.project-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

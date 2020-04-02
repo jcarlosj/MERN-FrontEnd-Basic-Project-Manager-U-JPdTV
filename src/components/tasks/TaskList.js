@@ -1,5 +1,8 @@
 import React, { Fragment, useContext } from 'react';
 
+/** Libraries */
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 /** Components */
 import Task from './Task';
 
@@ -33,12 +36,20 @@ const TaskList = () => {
             <ul className="task-list">
                 { projectTasks .length === 0 
                     ?   <li className="task"><p>No hay tareas</p></li>
-                    :   projectTasks .map( task => (
-                            <Task
-                                key={ task .id }
-                                data={ task }
-                            />
-                        ))
+                    :   <TransitionGroup>   
+                        {/* TO FIX: Warning: findDOMNode is deprecated in StrictMode */}
+                            { projectTasks .map( task => (
+                                <CSSTransition
+                                    key={ task .id }
+                                    timeout={ 400 }
+                                    classNames="task"
+                                >
+                                    <Task 
+                                        data={ task }
+                                    />
+                                </CSSTransition>
+                            ))}
+                        </TransitionGroup>
                 }
             </ul>
             <div className="button-container">
