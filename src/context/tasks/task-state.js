@@ -13,7 +13,8 @@ import {
     ERROR_NEW_AND_EDIT_TASK_FORM,
     ADD_TASK,
     DELETE_TASK,
-    UPDATE_TASK_STATUS
+    UPDATE_TASK_STATUS,
+    GET_SELECTED_TASK
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Context Status */
@@ -38,7 +39,8 @@ const TaskState = props => {
     const initialState = {
         tasks,
         projectTasks: [],
-        error: false
+        error: false,
+        task: null
     }
 
     /** Dispatch: Envia acciones a ejecutar */
@@ -83,6 +85,14 @@ const TaskState = props => {
         });
     }
 
+    /** Get selected task */
+    const getSelectedTask = task => {
+        dispatch({
+            type: GET_SELECTED_TASK,
+            payload: task
+        });
+    }
+
     /** Show error new and edit task form */
     const showErrorNewAndEditTaskForm = () => {
         dispatch({
@@ -99,11 +109,13 @@ const TaskState = props => {
                 tasks: state .tasks,                 // Valor del State
                 projectTasks: state .projectTasks,   // Valor del State
                 error: state .error,                 // Valor del State
+                task: state. task,                   // Valor del State
                 getTasksByProject,                   // Funcionalidad
                 showErrorNewAndEditTaskForm,         // Funcionalidad
                 addTaskByProject,                    // Funcionalidad
                 deleteTaskByProject,                 // Funcionalidad
-                updateTaskStatusByProject            // Funcionalidad
+                updateTaskStatusByProject,           // Funcionalidad
+                getSelectedTask                      // Funcionalidad
             }} 
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}

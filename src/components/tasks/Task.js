@@ -11,8 +11,7 @@ const Task = ({ data }) => {
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State de ProjectContext
         { project } = projectContext,                            // Destructuring Context Provider
         taskContext = useContext( TaskContext ),                 // Hace accesible los datos del State de TaskContext
-        { deleteTaskByProject, getTasksByProject, updateTaskStatusByProject } = taskContext;    // Destructuring Context Provider
-
+        { deleteTaskByProject, getTasksByProject, updateTaskStatusByProject, getSelectedTask } = taskContext;    // Destructuring Context Provider
 
     /** Destructuring Array */
     const [ actualProject ] = project;
@@ -21,6 +20,10 @@ const Task = ({ data }) => {
     const deleteTask = taskId => {
         deleteTaskByProject( taskId );              // Delete Task by ID
         getTasksByProject( actualProject .id );     // Get tasks by project & Update task list in the frontend
+    }
+
+    const getCurrentTask = task => {
+        getSelectedTask( task );
     }
 
     /** Change task status */
@@ -50,6 +53,7 @@ const Task = ({ data }) => {
                 <button
                     type="button"
                     className="btn btn-primary"
+                    onClick={ () => getCurrentTask( data ) }
                 >Editar</button> 
                 <button
                     type="button"
