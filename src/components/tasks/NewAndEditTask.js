@@ -12,7 +12,7 @@ const NewAndEditTask = () => {
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State de ProjectContext
         { project } = projectContext,                            // Destructuring Context Provider
         taskContext = useContext( TaskContext ),                 // Hace accesible los datos del State de TaskContext
-        { task, error, showErrorNewAndEditTaskForm, addTaskByProject, getTasksByProject, updateTaskByProject } = taskContext;    // Destructuring Context Provider
+        { task, error, showErrorNewAndEditTaskForm, addTaskByProject, getTasksByProject, updateTaskByProject, deleteSelectedTask } = taskContext;    // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -67,6 +67,7 @@ const NewAndEditTask = () => {
         } else {
             // Update existing task
             updateTaskByProject( taskForm );            // Update values to state
+            deleteSelectedTask();                       // Update task status to null
         }
 
         getTasksByProject( actualProject .id );         // Get tasks by project & Update task list in the frontend    

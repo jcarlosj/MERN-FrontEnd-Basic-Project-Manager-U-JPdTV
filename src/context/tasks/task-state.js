@@ -15,7 +15,8 @@ import {
     DELETE_TASK,
     UPDATE_TASK_STATUS,
     GET_SELECTED_TASK,
-    UPDATE_TASK
+    UPDATE_TASK,
+    DELETE_SELECTED_TASK
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Context Status */
@@ -102,6 +103,13 @@ const TaskState = props => {
         });
     }
 
+    /** Delete Selected Task in the State */
+    const deleteSelectedTask = _ => {
+        dispatch({
+            type: DELETE_SELECTED_TASK
+        });
+    }
+
     /** Show error new and edit task form */
     const showErrorNewAndEditTaskForm = () => {
         dispatch({
@@ -125,7 +133,8 @@ const TaskState = props => {
                 deleteTaskByProject,                 // Funcionalidad
                 updateTaskStatusByProject,           // Funcionalidad
                 getSelectedTask,                     // Funcionalidad
-                updateTaskByProject                  // Funcionalidad
+                updateTaskByProject,                 // Funcionalidad
+                deleteSelectedTask                   // Funcionalidad
             }} 
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}
