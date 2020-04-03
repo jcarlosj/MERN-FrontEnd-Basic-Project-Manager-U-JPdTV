@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 
+/** Libraries */
+import { CSSTransition, TransitionGroup } from 'react-transition-group';    
+
 /** Components */
 import Project from './Project';
 
@@ -26,12 +29,20 @@ const ProjectList = () => {
 
     return(
         <ul className="project-list">
-            { projects .map( ( project ) => (
-                <Project 
-                    key={ project .id }
-                    data={ project }
-                />
-            ))}
+            <TransitionGroup>
+                {/* TO FIX: Warning: findDOMNode is deprecated in StrictMode */}
+                { projects .map( ( project ) => (
+                    <CSSTransition
+                        key={ project .id }
+                        timeout={ 400 }
+                        classNames="project"
+                    >
+                        <Project 
+                            data={ project }
+                        />
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
         </ul>
     );
 }
