@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 /** Contexts */
 import ProjectContext from '../../context/projects/project-context';
@@ -12,7 +12,7 @@ const NewAndEditTask = () => {
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State de ProjectContext
         { project } = projectContext,                            // Destructuring Context Provider
         taskContext = useContext( TaskContext ),                 // Hace accesible los datos del State de TaskContext
-        { error, showErrorNewAndEditTaskForm, addTaskByProject, getTasksByProject } = taskContext;    // Destructuring Context Provider
+        { task, error, showErrorNewAndEditTaskForm, addTaskByProject, getTasksByProject } = taskContext;    // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -21,6 +21,18 @@ const NewAndEditTask = () => {
         }),
     /** Destructuring State 'taskForm' */
         { name } = taskForm;
+
+    /** Hook: Tracking State 'task' */
+    useEffect( () => {
+    
+        /** validate state changes */
+        task !== null
+            ?   setTaskForm( task )    // Update State 'taskForm'
+            :   setTaskForm({          // Update State 'taskForm'
+                    name: ''
+                });    
+    
+    }, [ task ]);
 
     /** Validates if there is no selected project */
     if( ! project ) return null;
@@ -76,7 +88,12 @@ const NewAndEditTask = () => {
                 <button
                     type="submit"
                     className="btn btn-secondary btn-block"
-                >Agregar</button>
+                >
+                    { task 
+                        ?   'Editar'
+                        :   'Agregar'
+                    }
+                </button>
             </form>
             { error 
                 ?   <p className="message error">Nombre para la tarea es obligatorio</p>
