@@ -56,7 +56,8 @@ const TaskReducer = ( state, action ) => {
                     return task .id === action .payload .id 
                         ?   action .payload
                         :   task;
-                })
+                }),
+                task: null      // Delete selected task in the state
             }
         case GET_SELECTED_TASK:
             return {
