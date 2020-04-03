@@ -11,7 +11,7 @@ const Task = ({ data }) => {
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State de ProjectContext
         { project } = projectContext,                            // Destructuring Context Provider
         taskContext = useContext( TaskContext ),                 // Hace accesible los datos del State de TaskContext
-        { deleteTaskByProject, getTasksByProject } = taskContext;    // Destructuring Context Provider
+        { deleteTaskByProject, getTasksByProject, updateTaskStatusByProject } = taskContext;    // Destructuring Context Provider
 
 
     /** Destructuring Array */
@@ -23,6 +23,12 @@ const Task = ({ data }) => {
         getTasksByProject( actualProject .id );     // Get tasks by project & Update task list in the frontend
     }
 
+    /** Change task status */
+    const changeTaskStatus = task => {
+        task .state = task .state ? false : true;   // Change status
+        updateTaskStatusByProject( task );          // Update task status 
+    }
+
     return(
         <li className="task shadow">
             <p>{ data .name }</p>
@@ -31,10 +37,12 @@ const Task = ({ data }) => {
                     ?   <button
                             type="button"
                             className="btn btn-completed"
+                            onClick={ () => changeTaskStatus( data ) }
                         >Completada</button> 
                     :   <button
                             type="button"
                             className="btn btn-uncompleted"
+                            onClick={ () => changeTaskStatus( data ) }
                         >Sin completar</button> 
                 }
             </div>

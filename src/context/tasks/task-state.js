@@ -9,7 +9,8 @@ import {
     GET_PROJECT_TASKS,
     ERROR_NEW_AND_EDIT_TASK_FORM,
     ADD_TASK,
-    DELETE_TASK
+    DELETE_TASK,
+    UPDATE_TASK_STATUS
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Context Status */
@@ -61,10 +62,19 @@ const TaskState = props => {
         });
     }
 
+    /** Delete Task */
     const deleteTaskByProject = taskId => {
         dispatch({
             type: DELETE_TASK,
             payload: taskId
+        });
+    }
+
+    /** Update task status */
+    const updateTaskStatusByProject = task => {
+        dispatch({
+            type: UPDATE_TASK_STATUS,
+            payload: task
         });
     }
 
@@ -87,7 +97,8 @@ const TaskState = props => {
                 getTasksByProject,                   // Funcionalidad
                 showErrorNewAndEditTaskForm,         // Funcionalidad
                 addTaskByProject,                    // Funcionalidad
-                deleteTaskByProject                  // Funcionalidad
+                deleteTaskByProject,                 // Funcionalidad
+                updateTaskStatusByProject            // Funcionalidad
             }} 
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}
