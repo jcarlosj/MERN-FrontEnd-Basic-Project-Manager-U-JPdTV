@@ -14,7 +14,8 @@ import {
     ADD_TASK,
     DELETE_TASK,
     UPDATE_TASK_STATUS,
-    GET_SELECTED_TASK
+    GET_SELECTED_TASK,
+    UPDATE_TASK
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Context Status */
@@ -93,6 +94,14 @@ const TaskState = props => {
         });
     }
 
+    /** Update task */
+    const updateTaskByProject = task => {
+        dispatch({
+            type: UPDATE_TASK,
+            payload: task
+        });
+    }
+
     /** Show error new and edit task form */
     const showErrorNewAndEditTaskForm = () => {
         dispatch({
@@ -115,7 +124,8 @@ const TaskState = props => {
                 addTaskByProject,                    // Funcionalidad
                 deleteTaskByProject,                 // Funcionalidad
                 updateTaskStatusByProject,           // Funcionalidad
-                getSelectedTask                      // Funcionalidad
+                getSelectedTask,                     // Funcionalidad
+                updateTaskByProject                  // Funcionalidad
             }} 
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}

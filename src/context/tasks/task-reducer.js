@@ -4,7 +4,8 @@ import {
     ADD_TASK,
     DELETE_TASK,
     UPDATE_TASK_STATUS,
-    GET_SELECTED_TASK
+    GET_SELECTED_TASK,
+    UPDATE_TASK
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Define las acciones o eventos del Componente 
@@ -47,10 +48,11 @@ const TaskReducer = ( state, action ) => {
                     return task .id !== action .payload;
                 })
             }
+        case UPDATE_TASK:
         case UPDATE_TASK_STATUS:
             return {
                 ...state,
-                tasks: state .projectTasks .map( task => {
+                tasks: state .tasks .map( task => {
                     return task .id === action .payload .id 
                         ?   action .payload
                         :   task;

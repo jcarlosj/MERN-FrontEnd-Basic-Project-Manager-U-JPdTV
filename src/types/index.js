@@ -11,3 +11,4 @@ export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const UPDATE_TASK_STATUS = 'UPDATE_TASK_STATUS';
 export const GET_SELECTED_TASK = 'GET_SELECTED_TASK';
+export const UPDATE_TASK = 'UPDATE_TASK';

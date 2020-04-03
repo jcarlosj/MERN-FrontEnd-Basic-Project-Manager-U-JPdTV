@@ -12,7 +12,7 @@ const NewAndEditTask = () => {
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State de ProjectContext
         { project } = projectContext,                            // Destructuring Context Provider
         taskContext = useContext( TaskContext ),                 // Hace accesible los datos del State de TaskContext
-        { task, error, showErrorNewAndEditTaskForm, addTaskByProject, getTasksByProject } = taskContext;    // Destructuring Context Provider
+        { task, error, showErrorNewAndEditTaskForm, addTaskByProject, getTasksByProject, updateTaskByProject } = taskContext;    // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -25,7 +25,7 @@ const NewAndEditTask = () => {
     /** Hook: Tracking State 'task' */
     useEffect( () => {
     
-        /** validate state changes */
+        /** validate state changes / validates if you create or edit task */
         task !== null
             ?   setTaskForm( task )    // Update State 'taskForm'
             :   setTaskForm({          // Update State 'taskForm'
@@ -57,11 +57,19 @@ const NewAndEditTask = () => {
             showErrorNewAndEditTaskForm();  // Show Error
             return;
         }
+        
+        /** validates if you create or edit task */
+        if( task === null ) {       
+            // Create new task
+            taskForm .projectId = actualProject .id;    // Assign the current project ID to the task
+            taskForm .state = false;                    // Assign initial status of the task
+            addTaskByProject( taskForm );               // Add values to state
+        } else {
+            // Update existing task
+            updateTaskByProject( taskForm );            // Update values to state
+        }
 
-        taskForm .projectId = actualProject .id;    // Assign the current project ID to the task
-        taskForm .state = false;                    // Assign initial status of the task
-        addTaskByProject( taskForm );               // Add values to state
-        getTasksByProject( actualProject .id );     // Get tasks by project & Update task list in the frontend
+        getTasksByProject( actualProject .id );         // Get tasks by project & Update task list in the frontend    
 
         /** Reset form */
         setTaskForm({
