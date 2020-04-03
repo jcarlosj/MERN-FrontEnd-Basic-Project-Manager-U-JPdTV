@@ -4,6 +4,9 @@ import React, { useReducer } from 'react';
 import TaskContext from './task-context';
 import TaskReducer from './task-reducer';
 
+/** Dependencies */
+import { v4 as uuidv4 } from 'uuid';
+
 /** TYPES */
 import { 
     GET_PROJECT_TASKS,
@@ -18,17 +21,17 @@ const TaskState = props => {
 
     /** Static data must be changed for data obtained from the API */
     const tasks = [
-        { id: 1, projectId: 1, name: 'Update inventory', state: false },
-        { id: 2, projectId: 1, name: 'Add new products', state: true },
-        { id: 3, projectId: 1, name: 'Review comments', state: false },
-        { id: 4, projectId: 2, name: 'Define learning path', state: false },
-        { id: 5, projectId: 3, name: 'Design site theme', state: false },
-        { id: 6, projectId: 3, name: 'Choose site colors', state: false },
-        { id: 7, projectId: 3, name: 'Lay out the site', state: false },
-        { id: 8, projectId: 3, name: 'Define initial content', state: false },
-        { id: 9, projectId: 4, name: 'Model Database (MER)', state: false },
-        { id: 10, projectId: 4, name: 'Create modeled database', state: false },
-        { id: 11, projectId: 4, name: 'Define the software architecture', state: false }
+        { id: uuidv4(), projectId: 1, name: 'Update inventory', state: false },
+        { id: uuidv4(), projectId: 1, name: 'Add new products', state: true },
+        { id: uuidv4(), projectId: 1, name: 'Review comments', state: false },
+        { id: uuidv4(), projectId: 2, name: 'Define learning path', state: false },
+        { id: uuidv4(), projectId: 3, name: 'Design site theme', state: false },
+        { id: uuidv4(), projectId: 3, name: 'Choose site colors', state: false },
+        { id: uuidv4(), projectId: 3, name: 'Lay out the site', state: false },
+        { id: uuidv4(), projectId: 3, name: 'Define initial content', state: false },
+        { id: uuidv4(), projectId: 4, name: 'Model Database (MER)', state: false },
+        { id: uuidv4(), projectId: 4, name: 'Create modeled database', state: false },
+        { id: uuidv4(), projectId: 4, name: 'Define the software architecture', state: false }
     ];
 
     /** Estado inicial de datos  que fluirá por los Componentes */
@@ -55,6 +58,8 @@ const TaskState = props => {
 
     /** Add API project (simulation using static data) */
     const addTaskByProject = task => {
+        task .id = uuidv4();
+        
         /** Inserta tarea */
         dispatch({
             type: ADD_TASK,

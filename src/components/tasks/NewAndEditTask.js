@@ -46,7 +46,6 @@ const NewAndEditTask = () => {
             return;
         }
 
-        // TO DO: Fix task ID assignments
         taskForm .projectId = actualProject .id;    // Assign the current project ID to the task
         taskForm .state = false;                    // Assign initial status of the task
         addTaskByProject( taskForm );               // Add values to state
