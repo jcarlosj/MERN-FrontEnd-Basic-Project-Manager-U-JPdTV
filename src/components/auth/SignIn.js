@@ -35,7 +35,7 @@ const SignIn = () => {
     const onSubmitFormValues = event => {
         event .preventDefault();
 
-        /** Validate form values */
+        /** Validate that the fields are empty */
         if( 
             userName .trim() === '' 
             || email .trim() === ''
@@ -45,7 +45,18 @@ const SignIn = () => {
             showAlert( 'Todos los campos son obligatorios', 'alert-error' );  // Update State: Show Alert
             return;
         }
-        
+
+        /** The password field is less than 6 characters. */
+        if( password .length < 6 ) {
+            showAlert( 'La contraseña debe tener mínimo 6 caracteres', 'alert-error' );  // Update State: Show Alert
+            return;
+        }
+
+        /** Validate that the passwords do not match */
+        if( password !== confirmPassword ) {
+            showAlert( 'La contraseña confirmada no coincide', 'alert-error' );  // Update State: Show Alert
+            return;
+        }
     }
 
     return(
