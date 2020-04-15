@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+/** Contexts */
+import AlertContext from '../../context/alerts/alert-context';
+
 const SignIn = () => {
+
+    /** Get State Project Context */
+    const 
+        alertContext = useContext( AlertContext ),           // Hace accesible los datos del State del Contexto
+        { alert, showAlert } = alertContext;                 // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -23,12 +31,37 @@ const SignIn = () => {
         });
     }
 
+    /** Submit form data */
+    const onSubmitFormValues = event => {
+        event .preventDefault();
+
+        /** Validate form values */
+        if( 
+            userName .trim() === '' 
+            || email .trim() === ''
+            || password .trim() === ''
+            || confirmPassword .trim() === ''
+        ) {
+            showAlert( 'Todos los campos son obligatorios', 'alert-error' );  // Update State: Show Alert
+            return;
+        }
+        
+    }
+
     return(
         <div className="signin-form">
             <div className="form-container shadow-dark">
                 <h1>Nueva cuenta</h1>
 
-                <form>
+                <form
+                    onSubmit={ onSubmitFormValues }
+                >
+                    { alert 
+                        ?   <div className={`message ${ alert.category }`}>
+                                { alert .message }
+                            </div>
+                        : null
+                    }
                     <div className="form-field">
                         <label htmlFor="user-name">Nombre</label>
                         <input 
@@ -75,7 +108,7 @@ const SignIn = () => {
                     </div>
                     <div className="form-field">
                         <button
-                            type="button"
+                            type="submit"
                             className="btn btn-primary btn-block"
                         >Registrar</button>
                     </div>

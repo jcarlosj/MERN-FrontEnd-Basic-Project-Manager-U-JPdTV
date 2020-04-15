@@ -10,7 +10,7 @@ const AlertReducer = ( state, action ) => {
         // Acciones a ejecutar
         case SHOW_ALERT:  
             return {
-                alert: action .payload  // Show Alert
+                alert: action .payload  // Show Alert (Message & CSS Class)
             }
         case HIDE_ALERT:  
             return {
