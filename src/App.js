@@ -10,19 +10,22 @@ import Projects from './components/projects/Projects';
 import ProjectState from './context/projects/project-state';
 import TaskState from './context/tasks/task-state';
 import AlertState from './context/alerts/alert-state';
+import AuthState from './context/auth/auth-state';
 
 function App() {
   return (
     <ProjectState>  { /** Componente hace disponible el State (Datos) a los componentes hijos */ }
       <TaskState>   { /** Componente hace disponible el State (Datos) a los componentes hijos */ }
         <AlertState>{ /** Componente hace disponible el State (Datos) a los componentes hijos */ }
-          <Router>
-              <Switch>
-                  <Route exact path="/" component={ LogIn } />
-                  <Route exact path="/sign-in" component={ SignIn } />
-                  <Route exact path="/projects" component={ Projects } />
-              </Switch>
-          </Router>
+          <AuthState>{ /** Componente hace disponible el State (Datos) a los componentes hijos */ }
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={ LogIn } />
+                    <Route exact path="/sign-in" component={ SignIn } />
+                    <Route exact path="/projects" component={ Projects } />
+                </Switch>
+            </Router>
+          </AuthState>
         </AlertState>
       </TaskState>
     </ProjectState>
