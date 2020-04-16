@@ -16,3 +16,6 @@ export const DELETE_SELECTED_TASK = 'DELETE_SELECTED_TASK';
 
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const HIDE_ALERT = 'HIDE_ALERT';
+
+export const SUCCESSFUL_SIGN_IN = 'SUCCESSFUL_SIGN_IN';
+export const FAILED_SIGN_IN = 'FAILED_SIGN_IN';

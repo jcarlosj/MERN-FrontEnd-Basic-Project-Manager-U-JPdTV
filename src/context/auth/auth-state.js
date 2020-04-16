@@ -4,6 +4,12 @@ import React, { useReducer } from 'react';
 import AuthContext from './auth-context';
 import AuthReducer from './auth-reducer';
 
+/** TYPES */
+import { SUCCESSFUL_SIGN_IN, FAILED_SIGN_IN } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+
+/** Client Axios */
+import clientAxios from '../../config/axios';
+
 /** Context Status */
 const AuthState = props => {
 
@@ -22,6 +28,27 @@ const AuthState = props => {
         initialState        // InitialState: Estado inicial del Componente
     );
 
+    /** Register user */
+    const signIn = async data => {
+        console .log( 'Hey', data );
+        try {
+            const response = await clientAxios .post( '/api/users', data );     // Petición al API
+            console .log( 'signIn', response );
+
+            dispatch({
+                type: SUCCESSFUL_SIGN_IN,
+                payload: response .data
+            });
+
+        } catch ( error ) {
+            console .log( error );
+
+            dispatch({
+                type: FAILED_SIGN_IN
+            });
+        }
+    }
+
     return(
         /** AuthContext .Provider:
          *  Provee de datos al Contexto pasando un objeto.
@@ -32,7 +59,8 @@ const AuthState = props => {
                 authenticated: state .alert,    // Valor del State
                 message: state .message,        // Valor del State
                 token: state .token,            // Valor del State
-                user: state .user               // Valor del State
+                user: state .user,              // Valor del State
+                signIn                          // Funcionalidad
             }}
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}

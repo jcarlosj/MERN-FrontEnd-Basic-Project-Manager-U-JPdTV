@@ -3,24 +3,27 @@ import { Link } from 'react-router-dom';
 
 /** Contexts */
 import AlertContext from '../../context/alerts/alert-context';
+import AuthContext from '../../context/auth/auth-context';
 
 const SignIn = () => {
 
     /** Get State Project Context */
     const 
         alertContext = useContext( AlertContext ),           // Hace accesible los datos del State del Contexto
-        { alert, showAlert } = alertContext;                 // Destructuring Context Provider
+        { alert, showAlert } = alertContext,                 // Destructuring Context Provider
+        authContext = useContext( AuthContext ),             // Hace accesible los datos del State del Contexto
+        { signIn } = authContext;                            // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
         [ signInForm, setSignInForm ] = useState({
-            userName: '',
+            name: '',
             email: '',
             password: '',
             confirmPassword: ''
         }),
     /** Destructuring State 'signInForm' */
-        { userName, email, password, confirmPassword } = signInForm;
+        { name, email, password, confirmPassword } = signInForm;
 
     /** Get form values when they change */
     const onChangeFormValues = event => {
@@ -37,7 +40,7 @@ const SignIn = () => {
 
         /** Validate that the fields are empty */
         if( 
-            userName .trim() === '' 
+            name .trim() === '' 
             || email .trim() === ''
             || password .trim() === ''
             || confirmPassword .trim() === ''
@@ -57,6 +60,13 @@ const SignIn = () => {
             showAlert( 'La contraseña confirmada no coincide', 'alert-error' );  // Update State: Show Alert
             return;
         }
+
+        /** Register User */
+        signIn({
+            name,
+            email,
+            password
+        });
     }
 
     return(
@@ -78,10 +88,10 @@ const SignIn = () => {
                         <input 
                             id="user-name"
                             type="text"
-                            name="userName"
+                            name="name"
                             placeholder="Ej: Juan Carlos"
                             onChange={ onChangeFormValues }
-                            value={ userName }
+                            value={ name }
                         />
                     </div>
                     <div className="form-field">
