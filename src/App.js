@@ -13,6 +13,9 @@ import AlertState from './context/alerts/alert-state';
 import AuthState from './context/auth/auth-state';
 
 function App() {
+
+    console .log( 'REACT_APP_BACKEND_URL', process .env .REACT_APP_BACKEND_URL );
+
   return (
     <ProjectState>  { /** Componente hace disponible el State (Datos) a los componentes hijos */ }
       <TaskState>   { /** Componente hace disponible el State (Datos) a los componentes hijos */ }
