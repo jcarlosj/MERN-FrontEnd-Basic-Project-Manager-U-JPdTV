@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 /** Contexts */
 import AlertContext from '../../context/alerts/alert-context';
 import AuthContext from '../../context/auth/auth-context';
 
-const SignIn = ( props ) => {
+const SignIn = () => {
+
+    let history = useHistory();     // Hook de 'react-router-dom' para acceder a la instancia 'history' y puede usarse para navegar
 
     /** Get State Project Context */
     const 
@@ -18,19 +20,19 @@ const SignIn = ( props ) => {
      *  En caso que el usuario se haya autenticado o registrado
     */
    useEffect( () => {
-        console .log( 'props.history', props.history );
+        console .log( 'history', history );
         console .log( 'authenticated', authenticated );
 
         /** Validate if the user is authenticated  */
         if( authenticated ) {
             console .log( 'Autenticado!' );
-            props .history .push( '/projects' );    // Forma de Redirigir usando 'react-router-dom'
+            history .push( '/projects' );    // Forma de Redirigir usando 'react-router-dom'
         }
         /** Validate if a message exists */
         if( message ) {
             showAlert( message .text, message .class );
         }
-   }, [ authenticated, message, props .history ]);
+   }, [ authenticated, message, history ]);
 
     /** Hook: Define State */
     const 
