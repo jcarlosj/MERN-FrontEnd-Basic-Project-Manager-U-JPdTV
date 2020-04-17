@@ -1,18 +1,36 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 /** Contexts */
 import AlertContext from '../../context/alerts/alert-context';
 import AuthContext from '../../context/auth/auth-context';
 
-const SignIn = () => {
+const SignIn = ( props ) => {
 
     /** Get State Project Context */
     const 
         alertContext = useContext( AlertContext ),           // Hace accesible los datos del State del Contexto
         { alert, showAlert } = alertContext,                 // Destructuring Context Provider
         authContext = useContext( AuthContext ),             // Hace accesible los datos del State del Contexto
-        { signIn } = authContext;                            // Destructuring Context Provider
+        { authenticated, message, signIn } = authContext;    // Destructuring Context Provider
+
+    /** Tracking 'authenticated' 
+     *  En caso que el usuario se haya autenticado o registrado
+    */
+   useEffect( () => {
+        console .log( 'props.history', props.history );
+        console .log( 'authenticated', authenticated );
+
+        /** Validate if the user is authenticated  */
+        if( authenticated ) {
+            console .log( 'Autenticado!' );
+            props .history .push( '/projects' );    // Forma de Redirigir usando 'react-router-dom'
+        }
+        /** Validate if a message exists */
+        if( message ) {
+            showAlert( message .text, message .class );
+        }
+   }, [ authenticated, message, props .history ]);
 
     /** Hook: Define State */
     const 

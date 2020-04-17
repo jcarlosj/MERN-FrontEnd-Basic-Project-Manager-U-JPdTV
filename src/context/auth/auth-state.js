@@ -25,7 +25,7 @@ const AuthState = props => {
     const [ state, dispatch ] = useReducer(
         /** useReducer: Hook Adicional que se usa en React a cambio del Reducer que se encuentra en Redux */
         AuthReducer,       // Reducer: Definición de Acciones del Componente
-        initialState        // InitialState: Estado inicial del Componente
+        initialState       // InitialState: Estado inicial del Componente
     );
 
     /** Register user */
@@ -44,7 +44,11 @@ const AuthState = props => {
             console .log( error );
 
             dispatch({
-                type: FAILED_SIGN_IN
+                type: FAILED_SIGN_IN,
+                payload: {
+                    text: error .response .data .message,
+                    class: 'alert-error'
+                }
             });
         }
     }
@@ -56,7 +60,7 @@ const AuthState = props => {
         */
         <AuthContext .Provider
             value={{
-                authenticated: state .alert,    // Valor del State
+                authenticated: state .authenticated,    // Valor del State
                 message: state .message,        // Valor del State
                 token: state .token,            // Valor del State
                 user: state .user,              // Valor del State
