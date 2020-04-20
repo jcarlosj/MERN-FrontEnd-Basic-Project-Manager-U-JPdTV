@@ -5,10 +5,11 @@ import AuthContext from './auth-context';
 import AuthReducer from './auth-reducer';
 
 /** TYPES */
-import { SUCCESSFUL_SIGN_UP, FAILED_SIGN_UP } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+import { SUCCESSFUL_SIGN_UP, FAILED_SIGN_UP, FAILED_LOG_IN, GET_AUTHENTICATED_USER } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Client Axios */
 import clientAxios from '../../config/axios';
+import setAuthTokenToHeader  from '../../config/authToken';
 
 /** Context Status */
 const AuthState = props => {
@@ -40,6 +41,8 @@ const AuthState = props => {
                 payload: response .data
             });
 
+            getAuthenticatedUser();     // Obtener el usuario autenticado
+
         } catch ( error ) {
             console .log( error );
 
@@ -49,6 +52,32 @@ const AuthState = props => {
                     text: error .response .data .message,
                     class: 'alert-error'
                 }
+            });
+        }
+    }
+
+    /** Get authenticated user data */
+    const getAuthenticatedUser = async () => {
+        const token = localStorage .getItem( 'token' );     // Get token from LocalStorage
+
+        if( token ) {
+            /** Establece token en el header de Axios */
+            setAuthTokenToHeader( token );
+        }
+
+        try {
+            const response = await clientAxios .get( '/api/auth' );
+            console .log( 'getAuthenticatedUser', response );
+
+            dispatch({
+                type: GET_AUTHENTICATED_USER,
+                payload: response .data
+            });
+
+        } catch ( error ) {
+            console .log( error .response );
+            dispatch({
+                type: FAILED_LOG_IN
             });
         }
     }
