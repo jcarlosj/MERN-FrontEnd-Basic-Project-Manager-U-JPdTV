@@ -1,5 +1,5 @@
 /** TYPES */
-import { SUCCESSFUL_SIGN_IN, FAILED_SIGN_IN } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+import { SUCCESSFUL_SIGN_UP, FAILED_SIGN_UP } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 /** Define las acciones o eventos del Componente 
  *      - state: Estado del Componente antes de algún cambio.
  *      - action: Un Objeto JavaScrit con uno o dos parámetros
@@ -8,14 +8,14 @@ import { SUCCESSFUL_SIGN_IN, FAILED_SIGN_IN } from '../../types';     // No pong
 */
 const AuthReducer = ( state, action ) => {   
     switch( action .type ) {
-        case SUCCESSFUL_SIGN_IN:
+        case SUCCESSFUL_SIGN_UP:
             localStorage .setItem( 'token', action .payload. token );  // Pone el Token en el LocalStorage
             return {
                 ...state,
                 authenticated: true,
                 message: null
             }
-        case FAILED_SIGN_IN:
+        case FAILED_SIGN_UP:
             return {
                 ...state,
                 message: action .payload,

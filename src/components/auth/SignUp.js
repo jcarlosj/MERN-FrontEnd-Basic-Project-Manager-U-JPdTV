@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alert-context';
 import AuthContext from '../../context/auth/auth-context';
 
-const SignIn = () => {
+const SignUp = () => {
 
     let history = useHistory();     // Hook de 'react-router-dom' para acceder a la instancia 'history' y puede usarse para navegar
 
@@ -14,7 +14,7 @@ const SignIn = () => {
         alertContext = useContext( AlertContext ),           // Hace accesible los datos del State del Contexto
         { alert, showAlert } = alertContext,                 // Destructuring Context Provider
         authContext = useContext( AuthContext ),             // Hace accesible los datos del State del Contexto
-        { authenticated, message, signIn } = authContext;    // Destructuring Context Provider
+        { authenticated, message, signUp } = authContext;    // Destructuring Context Provider
 
     /** Tracking 'authenticated' 
      *  En caso que el usuario se haya autenticado o registrado
@@ -36,20 +36,20 @@ const SignIn = () => {
 
     /** Hook: Define State */
     const 
-        [ signInForm, setSignInForm ] = useState({
+        [ signUpForm, setSignUpForm ] = useState({
             name: '',
             email: '',
             password: '',
             confirmPassword: ''
         }),
-    /** Destructuring State 'signInForm' */
-        { name, email, password, confirmPassword } = signInForm;
+    /** Destructuring State 'signUpForm' */
+        { name, email, password, confirmPassword } = signUpForm;
 
     /** Get form values when they change */
     const onChangeFormValues = event => {
         /** Update State 'logInForm' */
-        setSignInForm({
-            ...signInForm,
+        setSignUpForm({
+            ...signUpForm,
             [ event .target .name ]: event .target .value 
         });
     }
@@ -82,7 +82,7 @@ const SignIn = () => {
         }
 
         /** Register User */
-        signIn({
+        signUp({
             name,
             email,
             password
@@ -90,9 +90,9 @@ const SignIn = () => {
     }
 
     return(
-        <div className="signin-form">
+        <div className="signup-form">
             <div className="form-container shadow-dark">
-                <h1>Nueva cuenta</h1>
+                <h1>Crear cuenta</h1>
 
                 <form
                     onSubmit={ onSubmitFormValues }
@@ -165,4 +165,4 @@ const SignIn = () => {
     );
 }
 
-export default SignIn;
+export default SignUp;

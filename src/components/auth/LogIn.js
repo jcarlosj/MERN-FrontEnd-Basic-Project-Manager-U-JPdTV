@@ -58,7 +58,7 @@ const LogIn = () => {
                 </form>
 
                 <Link 
-                    to="/sign-in" 
+                    to="/sign-up" 
                     className="link">
                     Registro
                 </Link>

@@ -106,7 +106,7 @@ aside  {
 
 /** Form */
 .login-form,
-.signin-form {
+.signup-form {
     background-color: var(--gris2);
     height: 100vh;
     min-height: 800px;
