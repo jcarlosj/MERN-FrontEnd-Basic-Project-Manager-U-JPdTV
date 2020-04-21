@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+/** Contexts */
+import AlertContext from '../../context/alerts/alert-context';
+import AuthContext from '../../context/auth/auth-context';
+
 const LogIn = () => {
+
+    /** Get State Project Context */
+    const 
+        alertContext = useContext( AlertContext ),           // Hace accesible los datos del State del Contexto
+        { alert, showAlert } = alertContext,                 // Destructuring Context Provider
+        authContext = useContext( AuthContext ),             // Hace accesible los datos del State del Contexto
+        { authenticated, message, logIn } = authContext;    // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -21,12 +32,37 @@ const LogIn = () => {
         });
     }
 
+    /** Submit form data */
+    const onSubmitFormValues = event => {
+        event .preventDefault();
+
+        /** Validate that the fields are empty */
+        if( email .trim() === '' || password .trim() === '' ) {
+            showAlert( 'Todos los campos son obligatorios', 'alert-error' );  // Update State: Show Alert
+            return;
+        }
+
+        /** LogIn User */
+        logIn({
+            email,
+            password
+        });
+    }
+
     return(
         <div className="login-form">
             <div className="form-container shadow-dark">
                 <h1>Iniciar Sesión</h1>
 
-                <form>
+                <form
+                    onSubmit={ onSubmitFormValues }
+                >
+                    { alert 
+                        ?   <div className={`message ${ alert.category }`}>
+                                { alert .message }
+                            </div>
+                        : null
+                    }
                     <div className="form-field">
                         <label htmlFor="email">Correo electrónico</label>
                         <input 
@@ -51,7 +87,7 @@ const LogIn = () => {
                     </div>
                     <div className="form-field">
                         <button
-                            type="button"
+                            type="submit"
                             className="btn btn-primary btn-block"
                         >Iniciar Sesión</button>
                     </div>

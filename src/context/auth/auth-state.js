@@ -31,7 +31,7 @@ const AuthState = props => {
 
     /** Register user */
     const signUp = async data => {
-        console .log( 'Hey', data );
+       
         try {
             const response = await clientAxios .post( '/api/users', data );     // Petición al API
             console .log( 'signUp', response );
@@ -82,6 +82,26 @@ const AuthState = props => {
         }
     }
 
+    /** Log In User */
+    const logIn = async data => {
+        try {
+            const response = await clientAxios .post( '/api/auth', data );     // Petición al API
+            console .log( 'signUp', response );
+
+        } catch ( error ) {
+            console .log( error .response );
+            console .log( state );
+
+            dispatch({
+                type: FAILED_LOG_IN,
+                payload: {
+                    text: error .response .data .message,
+                    class: 'alert-error'
+                }
+            });
+        }
+    }
+
     return(
         /** AuthContext .Provider:
          *  Provee de datos al Contexto pasando un objeto.
@@ -93,7 +113,8 @@ const AuthState = props => {
                 message: state .message,        // Valor del State
                 token: state .token,            // Valor del State
                 user: state .user,              // Valor del State
-                signUp                          // Funcionalidad
+                signUp,                         // Funcionalidad
+                logIn                           // Funcionalidad
             }}
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}
