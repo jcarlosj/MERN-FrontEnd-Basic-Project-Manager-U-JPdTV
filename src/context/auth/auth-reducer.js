@@ -3,7 +3,8 @@ import {
     SUCCESSFUL_SIGN_UP, 
     FAILED_SIGN_UP, 
     FAILED_LOG_IN, 
-    GET_AUTHENTICATED_USER 
+    GET_AUTHENTICATED_USER,
+    SUCCESSFUL_LOG_IN
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 /** Define las acciones o eventos del Componente 
  *      - state: Estado del Componente antes de algún cambio.
@@ -13,6 +14,7 @@ import {
 */
 const AuthReducer = ( state, action ) => {   
     switch( action .type ) {
+        case SUCCESSFUL_LOG_IN:
         case SUCCESSFUL_SIGN_UP:
             localStorage .setItem( 'token', action .payload. token );  // Pone el Token en el LocalStorage
             return {

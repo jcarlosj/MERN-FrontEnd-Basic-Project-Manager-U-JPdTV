@@ -5,7 +5,7 @@ import AuthContext from './auth-context';
 import AuthReducer from './auth-reducer';
 
 /** TYPES */
-import { SUCCESSFUL_SIGN_UP, FAILED_SIGN_UP, FAILED_LOG_IN, GET_AUTHENTICATED_USER } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+import { SUCCESSFUL_SIGN_UP, FAILED_SIGN_UP, FAILED_LOG_IN, GET_AUTHENTICATED_USER, SUCCESSFUL_LOG_IN } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Client Axios */
 import clientAxios from '../../config/axios';
@@ -86,16 +86,32 @@ const AuthState = props => {
     const logIn = async data => {
         try {
             const response = await clientAxios .post( '/api/auth', data );     // Petición al API
-            console .log( 'signUp', response );
+            console .log( 'logIn', response );
+
+            dispatch({
+                type: SUCCESSFUL_LOG_IN,
+                payload: response .data
+            });
+
+            getAuthenticatedUser();     // Obtener el usuario autenticado
 
         } catch ( error ) {
+            let message = null;
+
             console .log( error .response );
-            console .log( state );
+
+            /** Valida la estructura del mensaje de error */
+            if( error .response .data .errors ) {
+                message = error .response .data .errors[ 0 ] .msg;     // 'express-validator' en el BackEnd
+            }
+            else {
+                message = error .response .data .error .message;   // Estructura elegida por el Desarrollador en el BackEnd
+            }
 
             dispatch({
                 type: FAILED_LOG_IN,
                 payload: {
-                    text: error .response .data .message,
+                    text: message,
                     class: 'alert-error'
                 }
             });

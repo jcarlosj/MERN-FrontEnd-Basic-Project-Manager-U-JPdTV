@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 /** Contexts */
 import AlertContext from '../../context/alerts/alert-context';
 import AuthContext from '../../context/auth/auth-context';
 
-const LogIn = () => {
+const LogIn = ( props ) => {
 
     /** Get State Project Context */
     const 
@@ -13,6 +13,24 @@ const LogIn = () => {
         { alert, showAlert } = alertContext,                 // Destructuring Context Provider
         authContext = useContext( AuthContext ),             // Hace accesible los datos del State del Contexto
         { authenticated, message, logIn } = authContext;    // Destructuring Context Provider
+
+    /** Tracking 'authenticated' 
+     *  En caso que el nombre de usuario o password no existan
+    */
+    useEffect( () => {
+        console .log( 'props.history', props.history );
+        console .log( 'authenticated', authenticated );
+
+        /** Validate if the user is authenticated  */
+        if( authenticated ) {
+            console .log( 'Autenticado!' );
+            props .history .push( '/projects' );    // Forma de Redirigir usando 'react-router-dom'
+        }
+        /** Validate if a message exists */
+        if( message ) {
+            showAlert( message .text, message .class );
+        }
+    }, [ authenticated, message, props .history ]);
 
     /** Hook: Define State */
     const 
