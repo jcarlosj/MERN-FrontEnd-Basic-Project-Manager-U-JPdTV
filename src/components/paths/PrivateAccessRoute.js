@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 /** Context */
@@ -10,7 +10,14 @@ const PrivateRoute = ({ component: Component, ...props }) => {     // Un Compone
     /** Get State Alert Context */
     const 
         authContext = useContext( AuthContext ),    // Hace accesible los datos del State del Contexto
-        { authenticated } = authContext;            // Destructuring Context Provider
+        { authenticated, getAuthenticatedUser } = authContext;            // Destructuring Context Provider
+
+    /** Tracking 'authenticated' 
+     *  En caso que el usuario se haya autenticado o registrado
+    */
+    useEffect( () => {
+        getAuthenticatedUser();
+    }, []);
 
     return(
         <Route 
