@@ -130,7 +130,9 @@ const AuthState = props => {
                 token: state .token,            // Valor del State
                 user: state .user,              // Valor del State
                 signUp,                         // Funcionalidad
-                logIn                           // Funcionalidad
+                logIn,                          // Funcionalidad
+                getAuthenticatedUser            // Funcionalidad
+
             }}
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}
