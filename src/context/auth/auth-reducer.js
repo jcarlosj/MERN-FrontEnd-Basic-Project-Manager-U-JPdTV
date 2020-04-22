@@ -4,7 +4,8 @@ import {
     FAILED_SIGN_UP, 
     FAILED_LOG_IN, 
     GET_AUTHENTICATED_USER,
-    SUCCESSFUL_LOG_IN
+    SUCCESSFUL_LOG_IN,
+    SIGN_OFF
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 /** Define las acciones o eventos del Componente 
  *      - state: Estado del Componente antes de algún cambio.
@@ -22,17 +23,21 @@ const AuthReducer = ( state, action ) => {
                 authenticated: true,
                 message: null
             }
+        case SIGN_OFF:
         case FAILED_LOG_IN:
         case FAILED_SIGN_UP:
             localStorage .removeItem( 'token' );    // Elimina el Item en el LocalStorage
             return {
                 ...state,
+                authenticated: null,
                 message: action .payload,
-                token: null
+                token: null,
+                user: null
             }
         case GET_AUTHENTICATED_USER:
             return {
                 ...state,
+                authenticated: true,
                 user: action .payload .user
             }
         default:            // Acción por defecto

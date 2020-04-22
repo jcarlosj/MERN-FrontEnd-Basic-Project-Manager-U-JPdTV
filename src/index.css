@@ -214,6 +214,10 @@ aside  {
     display: block;
     background-color: transparent;
 }
+.btn-sign-off {
+    background-color: transparent;
+    color: white;
+}
 .btn-completed,
 .btn-correct {
   background-color: rgba(154, 252, 154, .3);

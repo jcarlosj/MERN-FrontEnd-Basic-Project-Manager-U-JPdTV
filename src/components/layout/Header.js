@@ -8,7 +8,7 @@ const Header = () => {
     /** Get State Alert Context */
     const 
         authContext = useContext( AuthContext ),           // Hace accesible los datos del State del Contexto
-        { user, getAuthenticatedUser } = authContext;      // Destructuring Context Provider
+        { user, getAuthenticatedUser, signOff } = authContext;      // Destructuring Context Provider
 
     /** Tracking 'authenticated' 
          *  En caso que el usuario se haya autenticado o registrado
@@ -24,7 +24,12 @@ const Header = () => {
                 :   null
             }
             <nav className="nav-principal">
-                <a href="#!">Cerrar sesión</a>
+                <button
+                    className="btn btn-blank btn-sign-off"
+                    onClick={ () => signOff() }
+                >Cerrar sesión</button>
+                
+
             </nav>
         </header>
     );

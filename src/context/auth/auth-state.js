@@ -5,7 +5,7 @@ import AuthContext from './auth-context';
 import AuthReducer from './auth-reducer';
 
 /** TYPES */
-import { SUCCESSFUL_SIGN_UP, FAILED_SIGN_UP, FAILED_LOG_IN, GET_AUTHENTICATED_USER, SUCCESSFUL_LOG_IN } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
+import { SUCCESSFUL_SIGN_UP, FAILED_SIGN_UP, FAILED_LOG_IN, GET_AUTHENTICATED_USER, SUCCESSFUL_LOG_IN, SIGN_OFF } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Client Axios */
 import clientAxios from '../../config/axios';
@@ -118,6 +118,14 @@ const AuthState = props => {
         }
     }
 
+
+    /** Sign off User */
+    const signOff = async () => {
+        dispatch({
+            type: SIGN_OFF
+        });
+    }
+
     return(
         /** AuthContext .Provider:
          *  Provee de datos al Contexto pasando un objeto.
@@ -131,8 +139,8 @@ const AuthState = props => {
                 user: state .user,              // Valor del State
                 signUp,                         // Funcionalidad
                 logIn,                          // Funcionalidad
-                getAuthenticatedUser            // Funcionalidad
-
+                getAuthenticatedUser,           // Funcionalidad
+                signOff                         // Funcionalidad
             }}
         >
             { props .children }         {/* Permite el paso de datos entre los componentes hijos anidados a este Provider */}
