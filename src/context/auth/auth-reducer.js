@@ -21,6 +21,7 @@ const AuthReducer = ( state, action ) => {
             return {
                 ...state,
                 authenticated: true,
+                loading: false,
                 message: null
             }
         case SIGN_OFF:
@@ -30,6 +31,7 @@ const AuthReducer = ( state, action ) => {
             return {
                 ...state,
                 authenticated: null,
+                loading: false,
                 message: action .payload,
                 token: null,
                 user: null
@@ -38,6 +40,7 @@ const AuthReducer = ( state, action ) => {
             return {
                 ...state,
                 authenticated: true,
+                loading: false,
                 user: action .payload .user
             }
         default:            // Acción por defecto

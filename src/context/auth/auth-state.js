@@ -17,6 +17,7 @@ const AuthState = props => {
     /** Estado inicial de datos que fluirá por los Componentes */
     const initialState = {
         authenticated: null,
+        loading: true,
         message: null,
         token: localStorage .getItem( 'token' ),    // Obtiene el token almacenado en el LocalStorage
         user: null
@@ -137,6 +138,7 @@ const AuthState = props => {
                 message: state .message,        // Valor del State
                 token: state .token,            // Valor del State
                 user: state .user,              // Valor del State
+                loading: state .loading,        // Valor del State
                 signUp,                         // Funcionalidad
                 logIn,                          // Funcionalidad
                 getAuthenticatedUser,           // Funcionalidad
