@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';      
 import LogIn from './components/auth/LogIn';
 import SignUp from './components/auth/SignUp';
 import Projects from './components/projects/Projects';
+import PrivateRoute from './components/paths/PrivateAccessRoute';
 
 /** Contexts */
 import ProjectState from './context/projects/project-state';
@@ -12,6 +13,7 @@ import TaskState from './context/tasks/task-state';
 import AlertState from './context/alerts/alert-state';
 import AuthState from './context/auth/auth-state';
 
+/** Config */
 import authToken from './config/authToken';
 
 /** Valida si hay un token en el localStorage */
@@ -34,7 +36,7 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={ LogIn } />
                     <Route exact path="/sign-up" component={ SignUp } />
-                    <Route exact path="/projects" component={ Projects } />
+                    <PrivateRoute exact path="/projects" component={ Projects } />
                 </Switch>
             </Router>
           </AuthState>
