@@ -24,7 +24,7 @@ const Project = ({ data }) => {
             <button
                 type="button"
                 className="btn btn-blank"
-                onClick={ () => getCurrentProject( data .id ) }
+                onClick={ () => getCurrentProject( data ._id ) }
             >{ data .name }</button>
         </li>
     );
