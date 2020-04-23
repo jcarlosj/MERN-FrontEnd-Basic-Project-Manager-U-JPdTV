@@ -1,7 +1,10 @@
 import React, { useReducer } from 'react';
+
 /** ProjectProvider */
 import ProjectContext from './project-context';
 import ProjectReducer from './project-reducer';
+
+/** Types */
 import { 
     PROJECT_FORM, 
     GET_PROJECTS, 
@@ -12,7 +15,7 @@ import {
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Dependencies */
-import { v4 as uuidv4 } from 'uuid';
+import clientAxios from '../../config/axios';
 
 /** Context Status */
 const ProjectState = props => {
@@ -57,14 +60,23 @@ const ProjectState = props => {
     }
 
     /** Add API project (simulation using static data) */
-    const addApiProject = project => {
-        project .id = uuidv4();
+    const addProject = async project => {
+        
+        try {
+            /** Inserta projecto en DB*/
+            const response = await clientAxios .post( '/api/projects', project );
+            console .log( 'addProject', response );
 
-        /** Inserta projecto */
-        dispatch({
-            type: ADD_PROJECT,
-            payload: project
-        });
+            /** Inserta projecto en el State */
+            dispatch({
+                type: ADD_PROJECT,
+                payload: response .data .project
+            });
+
+        } catch ( error ) {
+            console .log( error );
+        }
+   
     }
 
     /** Get selected project */
@@ -102,7 +114,7 @@ const ProjectState = props => {
                 project: state .project,    // Valor del State
                 showForm,                   // Funcionalidad
                 getApiProjects,             // Funcionalidad
-                addApiProject,              // Funcionalidad
+                addProject,                 // Funcionalidad
                 showErrorNewProjectForm,    // Funcionalidad
                 getSelectedProject,         // Funcionalidad
                 deleteProject               // Funcionalidad

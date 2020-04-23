@@ -8,7 +8,7 @@ const NewProject = () => {
     /** Get State Project Context */
     const 
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
-        { toShow, showForm, error, addApiProject, showErrorNewProjectForm } = projectContext;                   // Destructuring Context Provider
+        { toShow, showForm, error, addProject, showErrorNewProjectForm } = projectContext;                   // Destructuring Context Provider
 
     /** Hook: Define State */
     const 
@@ -37,7 +37,7 @@ const NewProject = () => {
             return;
         }
 
-        addApiProject( projectForm );    // Add values to state
+        addProject( projectForm );    // Add values to state
         setProjectForm({
             name: ''                     // Update State 'ProjectForm' & Reset form 
         });
