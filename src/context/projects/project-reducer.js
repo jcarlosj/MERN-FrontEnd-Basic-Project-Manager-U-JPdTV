@@ -4,7 +4,8 @@ import {
     ADD_PROJECT,
     ERROR_NEW_PROJECT_FORM,
     GET_SELECTED_PROJECT,
-    DELETE_PROJECT 
+    DELETE_PROJECT,
+    ERROR_PROJECT_MESSAGE 
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Define las acciones o eventos del Componente 
@@ -65,6 +66,11 @@ const ProjectReducer = ( state, action ) => {
                 ...state,
                 error: true                 // Show error message
             }
+            case ERROR_PROJECT_MESSAGE:
+                return {
+                    ...state,
+                    message: action .payload
+                }
         default:            // Acción por defecto
             return state;
     }

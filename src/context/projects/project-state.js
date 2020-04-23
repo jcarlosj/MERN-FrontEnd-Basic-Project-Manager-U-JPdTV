@@ -11,7 +11,8 @@ import {
     ADD_PROJECT,
     ERROR_NEW_PROJECT_FORM,
     GET_SELECTED_PROJECT,
-    DELETE_PROJECT
+    DELETE_PROJECT,
+    ERROR_PROJECT_MESSAGE
 } from '../../types';     // No pongo nombre del archivo por que se llama 'index.js' y lo reconoce por defecto.
 
 /** Dependencies */
@@ -20,20 +21,13 @@ import clientAxios from '../../config/axios';
 /** Context Status */
 const ProjectState = props => {
 
-    /** Static data must be changed for data obtained from the API */
-    const projects = [
-        { id: 1, name: 'Virtual Shopping' },
-        { id: 2, name: 'Learning Python & Django' },
-        { id: 3, name: 'Personal Web Page' },
-        { id: 4, name: 'Prototype business idea' }
-    ];
-
     /** Estado inicial de datos  que fluirá por los Componentes */
     const initialState = {
         toShow: false,
         project: null,
         projects: [],
-        error: false
+        error: false,
+        message: null
     }
 
     /** Dispatch: Envia acciones a ejecutar */
@@ -64,7 +58,15 @@ const ProjectState = props => {
             });
 
         } catch ( error ) {
-            console .log( error );
+            console .log( error .response );
+
+            dispatch({
+                type: ERROR_PROJECT_MESSAGE,
+                payload: {
+                    text: error .response .data .error .message,
+                    class: 'alert-error'
+                }
+            });
         }
 
     }
@@ -84,7 +86,15 @@ const ProjectState = props => {
             });
 
         } catch ( error ) {
-            console .log( error );
+            console .log( error .response );
+
+            dispatch({
+                type: ERROR_PROJECT_MESSAGE,
+                payload: {
+                    text: error .response .data .error .message,
+                    class: 'alert-error'
+                }
+            });
         }
    
     }
@@ -110,7 +120,15 @@ const ProjectState = props => {
             });
 
         } catch ( error ) {
-            console .log( error );
+            console .log( error .response );
+
+            dispatch({
+                type: ERROR_PROJECT_MESSAGE,
+                payload: {
+                    text: error .response .data .error .message,
+                    class: 'alert-error'
+                }
+            });
         }
         
     }
@@ -132,6 +150,7 @@ const ProjectState = props => {
                 projects: state .projects,  // Valor del State
                 error: state .error,        // Valor del State
                 project: state .project,    // Valor del State
+                message: state .message,    // Valor del State
                 showForm,                   // Funcionalidad
                 getProjects,                // Funcionalidad
                 addProject,                 // Funcionalidad
