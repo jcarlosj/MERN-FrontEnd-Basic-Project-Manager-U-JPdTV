@@ -27,7 +27,7 @@ const TaskList = () => {
 
     /** Delete a proyect */
     const deleteAProject = () => {
-        deleteProject( actualProject .id );
+        deleteProject( actualProject ._id );
     }
 
     return(

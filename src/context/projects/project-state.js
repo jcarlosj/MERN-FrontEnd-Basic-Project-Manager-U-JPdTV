@@ -98,11 +98,21 @@ const ProjectState = props => {
     }
 
     /** Delete a Project */
-    const deleteProject = projectId => {
-        dispatch({
-            type: DELETE_PROJECT,
-            payload: projectId
-        });
+    const deleteProject = async projectId => {
+        
+        try {
+            const response = await clientAxios .delete( `/api/projects/${ projectId }` );
+            console .log( 'deleteProject', response );
+
+            dispatch({
+                type: DELETE_PROJECT,
+                payload: projectId
+            });
+
+        } catch ( error ) {
+            console .log( error );
+        }
+        
     }
 
     /** Show error new project form */

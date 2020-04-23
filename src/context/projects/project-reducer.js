@@ -53,7 +53,7 @@ const ProjectReducer = ( state, action ) => {
             return {
                 ...state,
                 projects: state .projects .filter( project => {      // Itera todos los proyectos para filtrar el seleccionado y ... 
-                    if( project .id !== action .payload ) {
+                    if( project ._id !== action .payload ) {
                         return project;                              // ... Asigna los projectos a la propiedad 'project' del State del Context, excepto el seleccionado
                     } 
                 }),
