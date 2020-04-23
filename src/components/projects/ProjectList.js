@@ -14,14 +14,14 @@ const ProjectList = () => {
     /** Get State Project Context */
     const 
         projectContext = useContext( ProjectContext ),           // Hace accesible los datos del State del Contexto
-        { projects, getApiProjects } = projectContext;           // Destructuring Context Provider
+        { projects, getProjects } = projectContext;           // Destructuring Context Provider
 
     /** Hook: Tracking State 
      * Get projects when the component load
     */
     useEffect( () => {
         console .log( 'Component ProjectList has loaded!' );
-        getApiProjects();
+        getProjects();
     }, [] );
 
     /** Validate if data exists */
@@ -33,7 +33,7 @@ const ProjectList = () => {
                 {/* TO FIX: Warning: findDOMNode is deprecated in StrictMode */}
                 { projects .map( ( project ) => (
                     <CSSTransition
-                        key={ project .id }
+                        key={ project ._id }
                         timeout={ 400 }
                         classNames="project"
                     >

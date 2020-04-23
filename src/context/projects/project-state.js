@@ -52,11 +52,21 @@ const ProjectState = props => {
     }
 
     /** Get API projects (simulation using static data) */
-    const getApiProjects = () => {
-        dispatch({
-            type: GET_PROJECTS,
-            payload: projects           // Datos que envia al Reducer
-        });
+    const getProjects = async () => {
+    
+        try {
+            const response = await clientAxios .get( '/api/projects' );
+            console .log( 'getProjects', response .data );
+
+            dispatch({
+                type: GET_PROJECTS,
+                payload: response .data .projects          // Datos que envia al Reducer
+            });
+
+        } catch ( error ) {
+            console .log( error );
+        }
+
     }
 
     /** Add API project (simulation using static data) */
@@ -113,7 +123,7 @@ const ProjectState = props => {
                 error: state .error,        // Valor del State
                 project: state .project,    // Valor del State
                 showForm,                   // Funcionalidad
-                getApiProjects,             // Funcionalidad
+                getProjects,                // Funcionalidad
                 addProject,                 // Funcionalidad
                 showErrorNewProjectForm,    // Funcionalidad
                 getSelectedProject,         // Funcionalidad
