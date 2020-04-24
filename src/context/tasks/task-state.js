@@ -37,11 +37,21 @@ const TaskState = props => {
     );  
 
     /** Get tasks by project */
-    const getTasksByProject = projectId => {
-        dispatch({
-            type: GET_PROJECT_TASKS,
-            payload: projectId
-        });
+    const getTasksByProject = async projectId => {
+        
+        try {
+            const response = await clientAxios .get( '/api/tasks', { params: { project: projectId } } );   // Cuando enviamos un valor por params, debemos obtenerlo en el Backend como: request .query
+            console .log( 'getTasksByProject', response );
+
+            dispatch({
+                type: GET_PROJECT_TASKS,
+                payload: response .data .tasks
+            });
+
+        } catch ( error ) {
+            console .log( error .response );
+        }
+
     }
 
     /** Add API project (simulation using static data) */
@@ -49,7 +59,7 @@ const TaskState = props => {
         
         try {
             const response = await clientAxios .post( '/api/tasks', task );
-            console .log( response );
+            console .log( 'addTaskByProject', response );
 
             /** Inserta tarea */
             dispatch({

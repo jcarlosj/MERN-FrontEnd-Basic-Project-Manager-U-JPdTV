@@ -21,11 +21,7 @@ const TaskReducer = ( state, action ) => {
         case GET_PROJECT_TASKS:
             return {
                 ...state,
-                projectTasks: state .projectTasks .filter( task => {
-                    if( task .projectId === action .payload ) {
-                        return task;
-                    }
-                })
+                projectTasks: action .payload
             }
         case ERROR_NEW_AND_EDIT_TASK_FORM: 
             // Asigna valores a la propiedad 'error' del State del Context
@@ -37,8 +33,8 @@ const TaskReducer = ( state, action ) => {
             return {
                 ...state,
                 projectTasks: [
-                    ...state .projectTasks,
-                    action .payload
+                    action .payload,        // Muestra de primero en la lista de tareas
+                    ...state .projectTasks, // Muestra posteriormente la lista de tareas existentes
                 ],
                 error: false                 // Hide error message
             }

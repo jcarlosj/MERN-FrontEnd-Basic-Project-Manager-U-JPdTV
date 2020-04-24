@@ -40,7 +40,7 @@ const TaskList = () => {
                         {/* TO FIX: Warning: findDOMNode is deprecated in StrictMode */}
                             { projectTasks .map( task => (
                                 <CSSTransition
-                                    key={ task .id }
+                                    key={ task ._id }
                                     timeout={ 400 }
                                     classNames="task"
                                 >
