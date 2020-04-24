@@ -21,7 +21,7 @@ const TaskReducer = ( state, action ) => {
         case GET_PROJECT_TASKS:
             return {
                 ...state,
-                projectTasks: state .tasks .filter( task => {
+                projectTasks: state .projectTasks .filter( task => {
                     if( task .projectId === action .payload ) {
                         return task;
                     }
@@ -36,8 +36,8 @@ const TaskReducer = ( state, action ) => {
         case ADD_TASK:
             return {
                 ...state,
-                tasks: [
-                    ...state .tasks,
+                projectTasks: [
+                    ...state .projectTasks,
                     action .payload
                 ],
                 error: false                 // Hide error message
@@ -45,7 +45,7 @@ const TaskReducer = ( state, action ) => {
         case DELETE_TASK:
             return {
                 ...state,
-                tasks: state .tasks .filter( task => {
+                projectTasks: state .projectTasks .filter( task => {
                     return task .id !== action .payload;
                 })
             }
@@ -53,7 +53,7 @@ const TaskReducer = ( state, action ) => {
         case UPDATE_TASK_STATUS:
             return {
                 ...state,
-                tasks: state .tasks .map( task => {
+                projectTasks: state .projectTasks .map( task => {
                     return task .id === action .payload .id 
                         ?   action .payload
                         :   task;

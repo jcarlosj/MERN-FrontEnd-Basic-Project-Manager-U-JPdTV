@@ -5,7 +5,7 @@ import TaskContext from './task-context';
 import TaskReducer from './task-reducer';
 
 /** Dependencies */
-import { v4 as uuidv4 } from 'uuid';
+import clientAxios from '../../config/axios';
 
 /** TYPES */
 import { 
@@ -22,24 +22,8 @@ import {
 /** Context Status */
 const TaskState = props => {
 
-    /** Static data must be changed for data obtained from the API */
-    const tasks = [
-        { id: uuidv4(), projectId: 1, name: 'Update inventory', state: false },
-        { id: uuidv4(), projectId: 1, name: 'Add new products', state: true },
-        { id: uuidv4(), projectId: 1, name: 'Review comments', state: false },
-        { id: uuidv4(), projectId: 2, name: 'Define learning path', state: false },
-        { id: uuidv4(), projectId: 3, name: 'Design site theme', state: false },
-        { id: uuidv4(), projectId: 3, name: 'Choose site colors', state: false },
-        { id: uuidv4(), projectId: 3, name: 'Lay out the site', state: false },
-        { id: uuidv4(), projectId: 3, name: 'Define initial content', state: false },
-        { id: uuidv4(), projectId: 4, name: 'Model Database (MER)', state: false },
-        { id: uuidv4(), projectId: 4, name: 'Create modeled database', state: false },
-        { id: uuidv4(), projectId: 4, name: 'Define the software architecture', state: false }
-    ];
-
     /** Estado inicial de datos  que fluirá por los Componentes */
     const initialState = {
-        tasks,
         projectTasks: [],
         error: false,
         task: null
@@ -61,14 +45,22 @@ const TaskState = props => {
     }
 
     /** Add API project (simulation using static data) */
-    const addTaskByProject = task => {
-        task .id = uuidv4();
+    const addTaskByProject = async task => {
         
-        /** Inserta tarea */
-        dispatch({
-            type: ADD_TASK,
-            payload: task
-        });
+        try {
+            const response = await clientAxios .post( '/api/tasks', task );
+            console .log( response );
+
+            /** Inserta tarea */
+            dispatch({
+                type: ADD_TASK,
+                payload: task
+            });
+
+        } catch ( error ) {
+            console .log( error );
+        }
+        
     }
 
     /** Delete Task */

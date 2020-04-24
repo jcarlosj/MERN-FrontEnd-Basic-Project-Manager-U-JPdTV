@@ -61,8 +61,7 @@ const NewAndEditTask = () => {
         /** validates if you create or edit task */
         if( task === null ) {       
             // Create new task
-            taskForm .projectId = actualProject .id;    // Assign the current project ID to the task
-            taskForm .state = false;                    // Assign initial status of the task
+            taskForm .project = actualProject ._id;     // Assign the current project ID to the task
             addTaskByProject( taskForm );               // Add values to state
         } else {
             // Update existing task
