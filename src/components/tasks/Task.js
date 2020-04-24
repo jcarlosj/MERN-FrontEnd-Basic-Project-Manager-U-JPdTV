@@ -18,8 +18,8 @@ const Task = ({ data }) => {
 
     /** Delete Task */
     const deleteTask = taskId => {
-        deleteTaskByProject( taskId );              // Delete Task by ID
-        getTasksByProject( actualProject .id );     // Get tasks by project & Update task list in the frontend
+        deleteTaskByProject( taskId, actualProject ._id );        // Delete Task by ID
+        getTasksByProject( actualProject ._id );     // Get tasks by project & Update task list in the frontend
     }
 
     const getCurrentTask = task => {
@@ -58,7 +58,7 @@ const Task = ({ data }) => {
                 <button
                     type="button"
                     className="btn btn-secondary"
-                    onClick={ () => deleteTask( data .id ) }
+                    onClick={ () => deleteTask( data ._id ) }
                 >Eliminar</button> 
             </div>
         </li>
