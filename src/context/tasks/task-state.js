@@ -92,11 +92,21 @@ const TaskState = props => {
     }
 
     /** Update task status */
-    const updateTaskStatusByProject = task => {
-        dispatch({
-            type: UPDATE_TASK_STATUS,
-            payload: task
-        });
+    const updateTaskStatusByProject = async task => {
+
+        try {
+            const response = await clientAxios .put( `/api/tasks/${ task ._id }`, task );
+            console .log( 'updateTaskByProject', response );
+
+            dispatch({
+                type: UPDATE_TASK_STATUS,
+                payload: task
+            });
+
+        } catch ( error ) {
+            console .log( error );    
+        }
+
     }
 
     /** Get selected task */
