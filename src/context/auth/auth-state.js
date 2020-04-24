@@ -97,22 +97,22 @@ const AuthState = props => {
             getAuthenticatedUser();     // Obtener el usuario autenticado
 
         } catch ( error ) {
-            let message = null;
+            let message = 'Error';
 
             console .log( error .response );
 
-            /** Valida la estructura del mensaje de error */
-            if( error .response .data .errors ) {
-                message = error .response .data .errors[ 0 ] .msg;     // 'express-validator' en el BackEnd
-            }
-            else {
-                message = error .response .data .error .message;   // Estructura elegida por el Desarrollador en el BackEnd
-            }
+            // /** TODO: Valida la estructura del mensaje de error */
+            // if( error .response .data .errors ) {
+            //     message = error .response .data .errors[ 0 ] .msg;     // 'express-validator' en el BackEnd
+            // }
+            // else {
+            //     message = error .response .data .error .message;   // Estructura elegida por el Desarrollador en el BackEnd
+            // }
 
             dispatch({
                 type: FAILED_LOG_IN,
                 payload: {
-                    text: message,
+                    text: 'Verifique que los datos ingresados son correctos',
                     class: 'alert-error'
                 }
             });
