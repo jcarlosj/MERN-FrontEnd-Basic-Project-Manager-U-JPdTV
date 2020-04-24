@@ -108,11 +108,21 @@ const TaskState = props => {
     }
 
     /** Update task */
-    const updateTaskByProject = task => {
-        dispatch({
-            type: UPDATE_TASK,
-            payload: task
-        });
+    const updateTaskByProject = async task => {
+        
+        try {
+            const response = await clientAxios .put( `/api/tasks/${ task ._id }`, task );
+            console .log( 'updateTaskByProject', response );
+            
+            dispatch({
+                type: UPDATE_TASK,
+                payload: response .data .task
+            });
+
+        } catch ( error ) {
+            console .log( error );    
+        }
+
     }
 
     /** Delete Selected Task in the State */
