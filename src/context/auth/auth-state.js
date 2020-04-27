@@ -45,12 +45,12 @@ const AuthState = props => {
             getAuthenticatedUser();     // Obtener el usuario autenticado
 
         } catch ( error ) {
-            console .log( error );
+            console .log( error .response );
 
             dispatch({
                 type: FAILED_SIGN_UP,
                 payload: {
-                    text: error .response .data .message,
+                    text: error .response .data .error .message,
                     class: 'alert-error'
                 }
             });
