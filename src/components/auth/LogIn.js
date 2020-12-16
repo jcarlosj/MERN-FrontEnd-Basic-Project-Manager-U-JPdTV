@@ -70,7 +70,7 @@ const LogIn = ( props ) => {
     return(
         <div className="login-form">
             <div className="form-container shadow-dark">
-                <h1>Iniciar Sesión</h1>
+                <h1 data-cy="title">Iniciar Sesión</h1>
 
                 <form
                     onSubmit={ onSubmitFormValues }
