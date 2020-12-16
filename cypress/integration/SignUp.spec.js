@@ -43,4 +43,26 @@ describe( '<SignUp />', () => {
 
     } );
 
+    it( 'Debe mostrar el mensaje de error "La contraseña confirmada no coincide"', () => {
+
+        cy .get( '[data-cy="signup-input-password"]' )
+            .clear()
+            .type( '123456789' );
+        cy .get( '[data-cy="signup-input-confirm-password"]' )
+            .clear()
+            .type( '123456788' );
+
+        cy .get( '[data-cy=signup-button-submit]' )         //  Realiza click al botón
+            .click()
+
+        cy .get( '[data-cy=alert-error]' )
+            .should( 'exist' )
+            .invoke( 'text' )
+            .should( 'eq', 'La contraseña confirmada no coincide' );
+
+        cy .get( '[data-cy=alert-error]' )
+            .should( 'have.class', 'alert-error' );
+
+    } )
+
 } );
