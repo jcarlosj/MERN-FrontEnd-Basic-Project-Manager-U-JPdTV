@@ -163,7 +163,9 @@ const SignUp = () => {
 
                 <Link 
                     to="/" 
-                    className="link">
+                    className="link link-signup"
+                    data-cy="signup-link"
+                >
                     Iniciar sesión
                 </Link>
             </div>

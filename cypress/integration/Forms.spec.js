@@ -31,7 +31,7 @@ describe( '<Login />', () => {
 
     });
 
-    it( 'Verifica enlace registro', () => {
+    it( 'Verifica enlace "Registro"', () => {
         /** Enlace Registro  */
         cy .get( '[data-cy="login-link-register"]' )
             .should( 'exist' )                          //  Verifica si existe el elemento
@@ -97,5 +97,26 @@ describe( '<SignUp />', () => {
             .contains( 'Registrar' );
 
     });
+
+    it( 'Verifica enlace "Iniciar sesión"', () => {
+        /** Enlace Iniciar sesión  */
+        cy .get( '[data-cy="signup-link"]' )
+            .should( 'exist' )                          //  Verifica si existe el elemento
+            .should( 'have.prop', 'tagName' )           
+            .should( 'eq', 'A' );                       //  Verifica que el elemento sea un enlace  
+
+        cy .get( '[data-cy="signup-link"]' )
+            .should( 'have.class', 'link' )             //  Verifica clases del elemento
+            .and( 'have.class', 'link-signup' )
+            .contains( 'Iniciar sesión' );
+
+        cy .get( '[data-cy="signup-link"]' )
+            .should( 'exist' )
+            .should( 'have.attr', 'href' )
+            .should( 'eq', '/' );
+
+        cy.visit( '/' );
+
+    } );
 
 });
