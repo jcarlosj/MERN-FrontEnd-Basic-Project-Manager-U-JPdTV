@@ -70,10 +70,11 @@ const LogIn = ( props ) => {
     return(
         <div className="login-form">
             <div className="form-container shadow-dark">
-                <h1 data-cy="title">Iniciar Sesión</h1>
+                <h1 data-cy="login-title">Iniciar Sesión</h1>
 
                 <form
                     onSubmit={ onSubmitFormValues }
+                    data-cy="login-form"
                 >
                     { alert 
                         ?   <div className={`message ${ alert.category }`}>
@@ -90,6 +91,7 @@ const LogIn = ( props ) => {
                             placeholder="Ej: jcarlosj@correo.co"
                             onChange={ onChangeFormValues }
                             value={ email }
+                            data-cy="login-input-email"
                         />
                     </div>
                     <div className="form-field">
@@ -101,12 +103,14 @@ const LogIn = ( props ) => {
                             placeholder="Procura usar una clave segura"
                             onChange={ onChangeFormValues }
                             value={ password }
+                            data-cy="login-input-password"
                         />
                     </div>
                     <div className="form-field">
                         <button
                             type="submit"
                             className="btn btn-primary btn-block"
+                            data-cy="login-button-submit"
                         >Iniciar Sesión</button>
                     </div>
                 </form>
