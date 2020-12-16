@@ -64,4 +64,38 @@ describe( '<SignUp />', () => {
 
     });
 
+    it( 'Verifica formulario', () => {
+        cy .get( '[data-cy="signup-form"]' )
+            .should( 'exist' );
+
+        /** Campos del formulario */
+        const fields = [ 
+            'signup-input-name',
+            'signup-input-email',
+            'signup-input-password',
+            'signup-input-confirm-password' 
+        ];
+
+        fields .map( field => {
+            cy .get( `[data-cy=${ field }]` )
+                .should( 'exist' );
+        });
+        
+        /** Verifica que los campos de password son de tipo password */
+        cy .get( `[data-cy=${ fields[ 2 ] }]` )
+            .should( 'have.prop', 'type' )
+            .should( 'eq', 'password' );
+        cy .get( `[data-cy=${ fields[ 3 ] }]` )
+            .should( 'have.prop', 'type' )
+            .should( 'eq', 'password' );
+
+        /** Verifica Boton */
+        cy .get( '[data-cy=signup-button-submit]' )
+            .should( 'exist' )
+            .should( 'have.class', 'btn' )
+            .and( 'have.class', 'btn-primary' )
+            .contains( 'Registrar' );
+
+    });
+
 });

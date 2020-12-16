@@ -96,6 +96,7 @@ const SignUp = () => {
 
                 <form
                     onSubmit={ onSubmitFormValues }
+                    data-cy="signup-form"
                 >
                     { alert 
                         ?   <div className={`message ${ alert.category }`}>
@@ -112,6 +113,7 @@ const SignUp = () => {
                             placeholder="Ej: Juan Carlos"
                             onChange={ onChangeFormValues }
                             value={ name }
+                            data-cy="signup-input-name"
                         />
                     </div>
                     <div className="form-field">
@@ -123,6 +125,7 @@ const SignUp = () => {
                             placeholder="Ej: jcarlosj@correo.co"
                             onChange={ onChangeFormValues }
                             value={ email }
+                            data-cy="signup-input-email"
                         />
                     </div>
                     <div className="form-field">
@@ -134,6 +137,7 @@ const SignUp = () => {
                             placeholder="Procura usar una clave segura"
                             onChange={ onChangeFormValues }
                             value={ password }
+                            data-cy="signup-input-password"
                         />
                     </div>
                     <div className="form-field">
@@ -145,12 +149,14 @@ const SignUp = () => {
                             placeholder="Repite la contraseña del campo anterior"
                             onChange={ onChangeFormValues }
                             value={ confirmPassword }
+                            data-cy="signup-input-confirm-password"
                         />
                     </div>
                     <div className="form-field">
                         <button
                             type="submit"
                             className="btn btn-primary btn-block"
+                            data-cy="signup-button-submit"
                         >Registrar</button>
                     </div>
                 </form>
