@@ -31,4 +31,21 @@ describe( '<Login />', () => {
 
     });
 
+    it( 'Verifica enlace registro', () => {
+        /** Enlace Registro  */
+        cy .get( '[data-cy="login-link-register"]' )
+            .should( 'exist' )                          //  Verifica si existe el elemento
+            .should( 'have.prop', 'tagName' )           
+            .should( 'eq', 'A' );                       //  Verifica que el elemento sea un enlace  
+
+        cy .get( '[data-cy="login-link-register"]' )
+            .should( 'have.class', 'link' )             //  Verifica clases del elemento
+            .and( 'have.class', 'link-register' )
+            .contains( 'Registro' );
+
+        cy .get( '[data-cy="login-link-register"]' )
+            .should( 'have.attr', 'href' )
+            .should( 'eq', '/sign-up' );
+    });
+
 });

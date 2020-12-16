@@ -116,8 +116,9 @@ const LogIn = ( props ) => {
                 </form>
 
                 <Link 
+                    data-cy="login-link-register"
                     to="/sign-up" 
-                    className="link">
+                    className="link link-register">
                     Registro
                 </Link>
             </div>
