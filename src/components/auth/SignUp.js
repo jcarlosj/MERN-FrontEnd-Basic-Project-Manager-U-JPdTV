@@ -92,7 +92,7 @@ const SignUp = () => {
     return(
         <div className="signup-form">
             <div className="form-container shadow-dark">
-                <h1>Crear cuenta</h1>
+                <h1 data-cy="signup-title">Crear cuenta</h1>
 
                 <form
                     onSubmit={ onSubmitFormValues }

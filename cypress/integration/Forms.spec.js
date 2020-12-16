@@ -49,3 +49,19 @@ describe( '<Login />', () => {
     });
 
 });
+
+describe( '<SignUp />', () => {
+
+    it( 'Verifica titulo', () => {
+
+        cy.visit( '/sign-up' );
+
+        cy .get( '[data-cy="signup-title"]' )
+            .should( 'exist' )
+            .invoke( 'text' )
+            .should( 'not.eq', 'Iniciar Sesión' )
+            .should( 'eq', 'Crear cuenta' );
+
+    });
+
+});
