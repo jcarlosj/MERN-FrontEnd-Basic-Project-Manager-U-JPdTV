@@ -99,7 +99,9 @@ const SignUp = () => {
                     data-cy="signup-form"
                 >
                     { alert 
-                        ?   <div className={`message ${ alert.category }`}>
+                        ?   <div
+                                data-cy="alert-error"
+                                className={`message ${ alert.category }`}>
                                 { alert .message }
                             </div>
                         : null
