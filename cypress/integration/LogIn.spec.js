@@ -49,4 +49,23 @@ describe( '<LogIn />', () => {
 
     } );
 
+    it( 'Debe iniciar sesión & cerrar sesión', () => {
+
+        /** Autenticacion de un usuario que existe */
+        cy .get( '[data-cy="login-input-password"]' ) .clear() .type( '123456789' );
+
+        cy .get( '[data-cy=login-button-submit]' ) .click();
+
+        cy .get( '[data-cy=alert-error]' )
+            .should( 'not.exist' );
+
+        cy .get( '[data-cy="task-list-title"]' )
+            .should( 'exist' )
+            .invoke( 'text' )
+            .should( 'eq', 'Selecciona un proyecto' );
+
+        cy .get( '[data-cy="header-button-signoff"]' ) .click();
+
+    } );
+
 } );
