@@ -91,4 +91,28 @@ describe( '<SignUp />', () => {
 
     } );
 
+    it( 'Debe mostrar el mensaje de error "El usuario ya existe!"', () => {
+      
+        cy .get( '[data-cy="login-link-register"]' ) .click();
+ 
+
+        /** Ingresa datos al formulario */
+        cy .get( '[data-cy="signup-input-name"]' ) .type( 'Eva Sofía' );
+        cy .get( '[data-cy="signup-input-email"]' ) .type( 'eva.sofia@correo.co' );
+        cy .get( '[data-cy="signup-input-password"]' ) .type( '123456789' );
+        cy .get( '[data-cy="signup-input-confirm-password"]' ) .type( '123456789' );
+
+
+        cy .get( '[data-cy="signup-button-submit"]' ) .click();       //  Realiza click al botón
+
+        cy .get( '[data-cy=alert-error]' )
+            .should( 'exist' )
+            .invoke( 'text' )
+            .should( 'eq', 'El usuario ya existe!' );
+
+        cy .get( '[data-cy=alert-error]' )
+            .should( 'have.class', 'alert-error' );
+
+    } );
+
 } );
