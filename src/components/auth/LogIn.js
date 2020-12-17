@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+/** Components */
+import { Alert } from '../layout/Alert';
+
 /** Contexts */
 import AlertContext from '../../context/alerts/alert-context';
 import AuthContext from '../../context/auth/auth-context';
@@ -76,14 +79,9 @@ const LogIn = ( props ) => {
                     onSubmit={ onSubmitFormValues }
                     data-cy="login-form"
                 >
-                    { alert 
-                        ?   <div
-                                data-cy="alert-error" 
-                                className={`message ${ alert.category }`}>
-                                    { alert .message }
-                            </div>
-                        : null
-                    }
+                    
+                    <Alert alert={ alert } />
+
                     <div className="form-field">
                         <label htmlFor="email">Correo electrónico</label>
                         <input 
