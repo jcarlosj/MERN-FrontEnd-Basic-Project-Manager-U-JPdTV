@@ -63,6 +63,25 @@ describe( '<SignUp />', () => {
         cy .get( '[data-cy=alert-error]' )
             .should( 'have.class', 'alert-error' );
 
-    } )
+    } );
+
+    it( 'Debe crear nueva cuenta', () => {
+
+        cy .get( '[data-cy="signup-input-confirm-password"]' )
+            .clear()
+            .type( '123456789' );
+
+        cy .get( '[data-cy=signup-button-submit]' )         //  Realiza click al botón
+            .click()
+
+        cy .get( '[data-cy=alert-error]' )
+            .should( 'not.exist' );
+
+        cy .get( '[data-cy="task-list-title"]' )
+            .should( 'exist' )
+            .invoke( 'text' )
+            .should( 'eq', 'Selecciona un proyecto' );
+
+    } );
 
 } );

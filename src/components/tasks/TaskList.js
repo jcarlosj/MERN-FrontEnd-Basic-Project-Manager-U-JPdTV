@@ -21,7 +21,7 @@ const TaskList = () => {
         { projectTasks } = taskContext;                          // Destructuring Context Provider
 
     /** Validates if there is no selected project */
-    if( ! project ) return <h2>Selecciona un proyecto</h2>;
+    if( ! project ) return <h2 data-cy="task-list-title">Selecciona un proyecto</h2>;
     console.log( 'Hey youuu!', projectTasks);
     const [ actualProject ] = project;                            // Array Destructuring
 
