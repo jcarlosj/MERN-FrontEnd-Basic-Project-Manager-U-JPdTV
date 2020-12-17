@@ -84,4 +84,11 @@ describe( '<SignUp />', () => {
 
     } );
 
+    it( 'Debe cerrar sesión', () => {
+        
+        cy .get( '[data-cy="header-button-signoff"]' )
+            .click();
+
+    } );
+
 } );

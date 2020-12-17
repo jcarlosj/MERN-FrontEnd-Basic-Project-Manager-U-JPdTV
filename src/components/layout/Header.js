@@ -27,6 +27,7 @@ const Header = () => {
                 <button
                     className="btn btn-blank btn-sign-off"
                     onClick={ () => signOff() }
+                    data-cy="header-button-signoff"
                 >Cerrar sesión</button>
                 
 
