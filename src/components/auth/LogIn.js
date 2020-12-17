@@ -77,8 +77,10 @@ const LogIn = ( props ) => {
                     data-cy="login-form"
                 >
                     { alert 
-                        ?   <div className={`message ${ alert.category }`}>
-                                { alert .message }
+                        ?   <div
+                                data-cy="alert-error" 
+                                className={`message ${ alert.category }`}>
+                                    { alert .message }
                             </div>
                         : null
                     }
