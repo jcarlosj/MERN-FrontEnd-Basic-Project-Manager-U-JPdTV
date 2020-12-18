@@ -43,6 +43,16 @@ describe( '<Projects />', () => {
             cy .get( '[data-cy="new-project-button-submit"]' ) .click();
 
         } );
+    
+    } );
+
+    describe( '<ProjectList />', () => {
+
+        it( 'Debe seleccionar primer de la lista proyecto', () => {
+            
+            cy .get( '[data-cy="project-list"] li:nth-child( 1 ) button' ) .click();        //  Selecciona el primer proyecto de la lista y hace click
+
+        } );
 
     } );
 
