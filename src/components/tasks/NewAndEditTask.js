@@ -91,11 +91,13 @@ const NewAndEditTask = () => {
                     name="name"
                     onChange={ handleChangeFormValues }
                     value={ name }
+                    data-cy="new-edit-task-input-name"
                 />
 
                 <button
                     type="submit"
                     className="btn btn-secondary btn-block"
+                    data-cy="new-edit-task-button-submit"
                 >
                     { task 
                         ?   'Editar'
@@ -104,7 +106,10 @@ const NewAndEditTask = () => {
                 </button>
             </form>
             { error 
-                ?   <p className="message error">Nombre para la tarea es obligatorio</p>
+                ?   <p 
+                        className="message error"
+                        data-cy="new-edit-task-alert-error"
+                    >Nombre para la tarea es obligatorio</p>
                 :   null
             }
         </div>

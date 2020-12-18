@@ -56,4 +56,23 @@ describe( '<Projects />', () => {
 
     } );
 
+    describe( '<NewAndEditTask />', () => {
+        
+        it( 'Debe mostrar mensaje de error "Nombre para la tarea es obligatorio"', () => {
+            
+            cy .get( '[data-cy="new-edit-task-button-submit"]' ) .click();
+
+            cy .get( '[data-cy="new-edit-task-alert-error"]' )
+                .should( 'exist' )
+                .invoke( 'text' )
+                .should( 'eq', 'Nombre para la tarea es obligatorio' );
+            
+            cy .get( '[data-cy="new-edit-task-alert-error"]' )
+                .should( 'have.class', 'message error' );
+
+        } );
+
+    });
+    
+
 } );
