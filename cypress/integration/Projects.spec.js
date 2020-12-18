@@ -72,6 +72,25 @@ describe( '<Projects />', () => {
 
         } );
 
+        it( 'Debe crear tareas del proyecto seleccionado exitosamente', () => {
+            
+            const tasks = [
+                'Levantar requerimientos con el cliente',
+                'Formular propuesta de proyecto',
+                'Definir propuesta de diseño',
+                'Firma de acuerdo e inicio'
+            ];
+
+            tasks .forEach( task => {
+
+                cy .get( '[data-cy="new-edit-task-input-name"]' ) .type( task );
+            
+                cy .get( '[data-cy="new-edit-task-button-submit"]' ) .click();
+
+            });
+
+        } );
+
     });
     
 
