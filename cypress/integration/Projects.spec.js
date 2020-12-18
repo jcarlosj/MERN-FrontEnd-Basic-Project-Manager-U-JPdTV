@@ -36,6 +36,14 @@ describe( '<Projects />', () => {
 
         } );
 
+        it( 'Debe crear proyecto exitosamente', () => {
+            
+            cy .get( '[data-cy="new-project-input-name"]' ) .type( 'App Ecommerce' );
+            
+            cy .get( '[data-cy="new-project-button-submit"]' ) .click();
+
+        } );
+
     } );
 
 } );
