@@ -19,4 +19,23 @@ describe( '<Projects />', () => {
 
     } );
 
+    describe( '<NewProject />', () => {
+        
+        it( 'Debe mostrar mensaje de error "Nombre del proyecto es obligatorio"', () => {
+      
+            cy .get( '[data-cy="new-project-button"]' ) .click();
+            cy .get( '[data-cy="new-project-button-submit"]' ) .click();
+
+            cy .get( '[data-cy="new-project-alert-error"]' )
+                .should( 'exist' )
+                .invoke( 'text' )
+                .should( 'eq', 'Nombre del proyecto es obligatorio' );
+            
+            cy .get( '[data-cy="new-project-alert-error"]' )
+                .should( 'have.class', 'message error' );
+
+        } );
+
+    } );
+
 } );

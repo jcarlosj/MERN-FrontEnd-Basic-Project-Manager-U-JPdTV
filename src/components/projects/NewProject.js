@@ -49,6 +49,7 @@ const NewProject = () => {
                 type="button"
                 className="btn btn-primary btn-block"
                 onClick={ () => showForm() }    /** Ejecuta funcion del State del Contexto */
+                data-cy="new-project-button"
             >Nuevo proyecto</button>
 
             { toShow
@@ -63,17 +64,22 @@ const NewProject = () => {
                             name="name"
                             onChange={ onChangeFormValues }
                             value={ name }
+                            data-cy="new-project-input-name"
                         />
                         <button
                             type="submit"
                             className="btn btn-primary btn-block"
+                            data-cy="new-project-button-submit"
                         >Agregar</button>
 
                     </form>
                 :   null
             }
             { error 
-                ?   <p className="message error">Nombre del proyecto es obligatorio</p>
+                ?   <p 
+                        className="message error"
+                        data-cy="new-project-alert-error"
+                    >Nombre del proyecto es obligatorio</p>
                 :   null
             }
         </Fragment>
