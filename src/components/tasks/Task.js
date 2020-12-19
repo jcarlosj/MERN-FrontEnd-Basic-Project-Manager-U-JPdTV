@@ -65,6 +65,7 @@ const Task = ({ data }) => {
                     type="button"
                     className="btn btn-secondary"
                     onClick={ () => deleteTask( data ._id ) }
+                    data-cy="task-button-delete"
                 >Eliminar</button> 
             </div>
         </li>

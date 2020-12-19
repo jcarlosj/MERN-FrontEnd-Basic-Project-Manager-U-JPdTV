@@ -118,6 +118,16 @@ describe( '<Projects />', () => {
 
         } );
 
+        it( 'Debe eliminar la tarea "Firma de acuerdo e inicio"', () => {
+            
+            cy .get( '[data-cy="task-li"]:nth-child( 1 ) [data-cy="task-button-delete"]' ) .click();
+
+            cy .get( '[data-cy="task-li"]:nth-child( 1 )' ) 
+                .invoke( 'text' )
+                .should( 'not.equal', 'Firma de acuerdo e inicio' );
+
+        } );
+
     } );
 
 } );
