@@ -59,6 +59,7 @@ const Task = ({ data }) => {
                     type="button"
                     className="btn btn-primary"
                     onClick={ () => getCurrentTask( data ) }
+                    data-cy="task-button-edit"
                 >Editar</button> 
                 <button
                     type="button"

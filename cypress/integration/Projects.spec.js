@@ -109,6 +109,15 @@ describe( '<Projects />', () => {
 
         } );
 
+        it( 'Debe editar la tarea "Formular propuesta de proyecto" cambiar a "Definir costo de la propuesta"', () => {
+            
+            cy .get( '[data-cy="task-li"]:nth-child( 3 ) [data-cy="task-button-edit"]' ) .click();
+
+            cy .get( '[data-cy="new-edit-task-input-name"]' ) .clear() .type( 'Definir costo de la propuesta' );
+            cy .get( '[data-cy="new-edit-task-button-submit"]' ) .click();
+
+        } );
+
     } );
 
 } );
