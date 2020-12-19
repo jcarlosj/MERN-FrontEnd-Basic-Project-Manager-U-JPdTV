@@ -64,7 +64,7 @@ const TaskState = props => {
             /** Inserta tarea */
             dispatch({
                 type: ADD_TASK,
-                payload: task
+                payload: response .data .task
             });
 
         } catch ( error ) {

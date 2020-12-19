@@ -92,6 +92,23 @@ describe( '<Projects />', () => {
         } );
 
     });
-    
+
+    describe( '<Task />', () => {
+
+        it( 'Debe cambiar estado de la primera tarea de la lista de Incompletada a Completada y viceversa', () => {
+
+            cy .get( '[data-cy="task-li"]:nth-child( 1 ) [data-cy="task-button-uncompleted"]' ) .click();
+            cy .get( '[data-cy="task-li"]:nth-child( 1 ) [data-cy="task-button-completed"]' ) 
+                .should( 'have.class', 'btn-completed' );
+
+            cy .get( '[data-cy="task-li"]:nth-child( 1 ) [data-cy="task-button-completed"]' ) .click();
+            cy .get( '[data-cy="task-li"]:nth-child( 1 ) [data-cy="task-button-uncompleted"]' ) 
+                .should( 'not.have.class', 'btn-completed' );
+            cy .get( '[data-cy="task-li"]:nth-child( 1 ) [data-cy="task-button-uncompleted"]' ) 
+                .should( 'have.class', 'btn-uncompleted' );
+
+        } );
+
+    } );
 
 } );

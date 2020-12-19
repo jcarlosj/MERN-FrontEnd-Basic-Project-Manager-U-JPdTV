@@ -33,7 +33,10 @@ const Task = ({ data }) => {
     }
 
     return(
-        <li className="task shadow">
+        <li 
+            className="task shadow"
+            data-cy="task-li"
+        >
             <p>{ data .name }</p>
             <div className="state">
                 { data .state 
@@ -41,11 +44,13 @@ const Task = ({ data }) => {
                             type="button"
                             className="btn btn-completed"
                             onClick={ () => changeTaskStatus( data ) }
+                            data-cy="task-button-completed"
                         >Completada</button> 
                     :   <button
                             type="button"
                             className="btn btn-uncompleted"
                             onClick={ () => changeTaskStatus( data ) }
+                            data-cy="task-button-uncompleted"
                         >Sin completar</button> 
                 }
             </div>
